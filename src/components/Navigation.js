@@ -5,11 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-function Navigation() {
+const Navigation = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">The GrapeVine</Navbar.Brand>
+        <Navbar.Brand href="/">The GrapeVine</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -26,12 +26,12 @@ function Navigation() {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
-            <Nav.Link href="#action1">
+            <Nav.Link href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
                 height="25"
-                fill="#000000"
+                fill="currentColor"
                 class="bi bi-house-fill"
                 viewBox="0 0 16 16"
               >
@@ -45,12 +45,12 @@ function Navigation() {
                 />
               </svg>
             </Nav.Link>
-            <Nav.Link href="#action2">
+            <Nav.Link href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
                 height="25"
-                fill="#000000"
+                fill="currentColor"
                 class="bi bi-award-fill"
                 viewBox="0 0 16 16"
               >
@@ -64,7 +64,7 @@ function Navigation() {
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
                   height="25"
-                  fill="#000000"
+                  fill="currentColor"
                   class="bi bi-person-circle"
                   viewBox="0 0 16 16"
                 >
@@ -77,18 +77,16 @@ function Navigation() {
               }
               id="navbarScrollingDropdown"
             >
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/">Login</NavDropdown.Item>
+              <NavDropdown.Item href="/">Sign-up</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Contact Us</NavDropdown.Item>
+              <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Navigation;

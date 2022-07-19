@@ -3,6 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import "./App.css";
 // import Button from "react-bootstrap/Button";
 import Navigation from "./components/Navigation";
+import LoginForm from "./components/LoginForm";
+import WineListings from "./components/WineListings";
+import NewWineForm from "./components/NewWineForm";
 
 function App() {
   // const clickO = () => {
@@ -11,9 +14,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <p>Hello world</p> */}
-        {/* <Button onClick={clickO}>Howdy ho!</Button> */}
         <Navigation />
+        <LoginForm />
+        <NewWineForm />
+        <WineListings />
       </header>
     </div>
   );
