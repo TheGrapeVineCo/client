@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-const Navigation = () => {
+const Navigation = ({ loggedInUser }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -77,10 +77,21 @@ const Navigation = () => {
               }
               id="navbarScrollingDropdown"
             >
-              <NavDropdown.Item href="/">Login</NavDropdown.Item>
-              <NavDropdown.Item href="/">Sign-up</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
+              {loggedInUser ? (
+                <>
+                  <NavDropdown.Item href="/">My Wines</NavDropdown.Item>
+                  <NavDropdown.Item href="/">Logout</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
+                </>
+              ) : (
+                <>
+                  <NavDropdown.Item href="/">Login</NavDropdown.Item>
+                  <NavDropdown.Item href="/">Sign-up</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
+                </>
+              )}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
