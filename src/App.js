@@ -23,8 +23,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Navigation loggedInUser={loggedInUser} activateUser={activateUser} />
+
         {/* When no user signed in, render loginForm */}
         {!loggedInUser && <LoginForm activateUser={activateUser} />}
+
+        {/* Need to include logic for only admin to have access to NewWineForm */}
         <NewWineForm />
         <WineListings wineListings={wineListings} />
       </header>
