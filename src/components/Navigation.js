@@ -5,7 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-const Navigation = ({ loggedInUser }) => {
+const Navigation = ({ loggedInUser, activateUser }) => {
+  const logout = (e) => {
+    e.preventDefault();
+    activateUser("");
+  };
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -80,7 +84,9 @@ const Navigation = ({ loggedInUser }) => {
               {loggedInUser ? (
                 <>
                   <NavDropdown.Item href="/">My Wines</NavDropdown.Item>
-                  <NavDropdown.Item href="/">Logout</NavDropdown.Item>
+                  <NavDropdown.Item href="/" onClick={logout}>
+                    Logout
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
                 </>
