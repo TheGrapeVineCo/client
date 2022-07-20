@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import { useState } from "react";
 
 // somehow need to pass eg. "loggedInAdmin" param so only admins can fill out this form
-function NewWineForm() {
+function NewWineForm({ addNewWineListing }) {
   // Sets initial fields as empty
   const initialFormData = {
     brand: "",
@@ -31,7 +31,8 @@ function NewWineForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    console.log(e.target.value);
+    // console.log(e.target.value); renders undefined
+    addNewWineListing(formData);
     clearFormData();
   };
 

@@ -15,6 +15,29 @@ function App() {
     setLoggedInUser(email);
   };
 
+  // adds new wine listing to list of wine listings
+  const addNewWineListing = ({
+    brand,
+    grape_variety,
+    year,
+    category,
+    country,
+    region,
+    description,
+  }) => {
+    const newListing = {
+      brand: brand,
+      grape_variety: grape_variety,
+      year: year,
+      category: category,
+      country: country,
+      region: region,
+      description: description,
+      id: wineListings[0].id + 1,
+    };
+    setWineListings((wineListings) => [newListing, ...wineListings]);
+  };
+
   useEffect(() => {
     setWineListings(initialWineListings);
   }, []);
@@ -28,7 +51,7 @@ function App() {
         {!loggedInUser && <LoginForm activateUser={activateUser} />}
 
         {/* Need to include logic for only admin to have access to NewWineForm */}
-        <NewWineForm />
+        <NewWineForm addNewWineListing={addNewWineListing} />
         <WineListings wineListings={wineListings} />
       </header>
     </div>
