@@ -11,6 +11,9 @@ const WineListing = ({ listing }) => {
         <p>{listing.country}</p>
         <p>{listing.region}</p>
         <p>{listing.description}</p>
+        {/* Need to work on comments feature */}
+        <a href="/">View Comments...</a>
+        <a href="/">Add Comment</a>
       </Card.Body>
     </Card>
   );

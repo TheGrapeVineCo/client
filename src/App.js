@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
 // import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
+import Comment from "./components/Comment";
 import initialWineListings from "./data/wine-listings.json";
 import {
   BrowserRouter as Router,
@@ -25,27 +26,27 @@ function App() {
   };
 
   // adds new wine listing to list of wine listings
-  // const addNewWineListing = ({
-  //   brand,
-  //   grape_variety,
-  //   year,
-  //   category,
-  //   country,
-  //   region,
-  //   description,
-  // }) => {
-  //   const newListing = {
-  //     brand: brand,
-  //     grape_variety: grape_variety,
-  //     year: year,
-  //     category: category,
-  //     country: country,
-  //     region: region,
-  //     description: description,
-  //     id: wineListings[0].id + 1,
-  //   };
-  //   setWineListings((wineListings) => [newListing, ...wineListings]);
-  // };
+  const addNewWineListing = ({
+    brand,
+    grape_variety,
+    year,
+    category,
+    country,
+    region,
+    description,
+  }) => {
+    const newListing = {
+      brand: brand,
+      grape_variety: grape_variety,
+      year: year,
+      category: category,
+      country: country,
+      region: region,
+      description: description,
+      id: wineListings[0].id + 1,
+    };
+    setWineListings((wineListings) => [newListing, ...wineListings]);
+  };
 
   useEffect(() => {
     setWineListings(initialWineListings);
@@ -71,8 +72,22 @@ function App() {
             path="wineListings"
             element={<WineListings wineListings={wineListings} />}
           />
+          <Route path="comments/new" element={<Comment />} />
           <Route path="about" element={<About />} />
           {/* When no user signed in, render loginForm */}
+          <Route
+            path="comment/new"
+            element={
+              loggedInUser ? (
+                <NewCommentForm
+                  loggedInUser={loggedInUser}
+                  addComment={addComment}
+                />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
           <Route
             path="login"
             element={<LoginForm activateUser={activateUser} />}

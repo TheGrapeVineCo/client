@@ -3,9 +3,11 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // somehow need to pass eg. "loggedInAdmin" param so only admins can fill out this form
 function NewWineForm({ addNewWineListing }) {
+  const navigate = useNavigate();
   // Sets initial fields as empty
   const initialFormData = {
     brand: "",
@@ -34,6 +36,8 @@ function NewWineForm({ addNewWineListing }) {
     // console.log(e.target.value); renders undefined
     addNewWineListing(formData);
     clearFormData();
+    // may need to change to admin dashboard
+    navigate("/wineListings");
   };
 
   //   clears the form data for next entry
