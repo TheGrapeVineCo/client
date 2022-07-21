@@ -1,8 +1,17 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ activateUser }) {
+  const navigate = useNavigate();
+
+  // upon successful sign-in, user is directed to wineListings
+  const login = (e) => {
+    e.preventDefault();
+    navigate("/wineListings");
+  };
+
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
@@ -49,7 +58,7 @@ function LoginForm({ activateUser }) {
           onChange={handleFormData}
         />
       </Form.Group>
-      <Button className="m-3" variant="primary" type="submit">
+      <Button className="m-3" variant="primary" type="submit" onClick={login}>
         Login
       </Button>
     </Form>
