@@ -1,0 +1,67 @@
+[
+  {
+    "id": 13,
+    "wine_listing_id": 4,
+    "comment": "I find this is a bit too sweet. The flavour is very light and easy to drink but I prefer more complex flavours."
+  },
+  {
+    "id": 12,
+    "wine_listing_id": 4,
+    "comment": "Smooth drinking shiraz. It's a bit more than what I would normally spend but was gifted this and loved it!"
+  },
+  {
+    "id": 11,
+    "wine_listing_id": 4,
+    "comment": "Such a good shiraz! Highly recommend to those shiraz lovers out there!"
+  },
+  {
+    "id": 10,
+    "wine_listing_id": 3,
+    "comment": "I'm not a big fan of this one. Their Premier Cru is much better and worth spending a bit more on, particularly for a special occasion or gift."
+  },
+  {
+    "id": 9,
+    "wine_listing_id": 3,
+    "comment": "Haven't tried their sparklings before, however have enjoyed a few of their other wines. Will give it a try."
+  },
+  {
+    "id": 8,
+    "wine_listing_id": 3,
+    "comment": "As good as it gets for an Aussie sparkling. Not too sweet or gassy, just right."
+  },
+  {
+    "id": 7,
+    "wine_listing_id": 3,
+    "comment": "Such a delightful sparkling! Shared this with some friends last night and saw it here by chance. Highly recommend!"
+  },
+  {
+    "id": 6,
+    "wine_listing_id": 2,
+    "comment": "Good Rose. Perfect for a spring or summer afternoon."
+  },
+  {
+    "id": 5,
+    "wine_listing_id": 2,
+    "comment": "This was ok. Personally, I prefer the rose's from Provence. Look forward to seeing some other Rose's listed."
+  },
+  {
+    "id": 4,
+    "wine_listing_id": 2,
+    "comment": "Perfect for any occasion. Was gifted this and so impressed! Light and crisp flavours."
+  },
+  {
+    "id": 3,
+    "wine_listing_id": 2,
+    "comment": "This is probably the best Australian Rose I've tried. Beautiful subtle flavour of cherries and not too sweet."
+  },
+  {
+    "id": 2,
+    "wine_listing_id": 1,
+    "comment": "Smooth chardonnay. Not too oaky. Good to have paired with salmon"
+  },
+  {
+    "id": 1,
+    "wine_listing_id": 1,
+    "comment": "This wine is amazing! I tried it recently and really impressed with the characteristics."
+  }
+]
