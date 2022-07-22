@@ -1,11 +1,15 @@
 import WineListing from "./WineListing";
 
-const WineListings = ({ wineListings }) => {
+const WineListings = ({ loggedInUser, wineListings }) => {
   return (
     <>
       <h1>Hello world!</h1>
       {wineListings.map((listing) => (
-        <WineListing key={listing.id} listing={listing} />
+        <WineListing
+          key={listing.id}
+          listing={listing}
+          loggedInUser={loggedInUser}
+        />
       ))}
     </>
   );

@@ -1,7 +1,9 @@
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+// import Comment from "./Comment";
 
-const WineListing = ({ listing }) => {
+// Renders individual wine listing
+const WineListing = ({ loggedInUser, listing, commentList }) => {
   return (
     <Card>
       <Card.Body>
@@ -13,10 +15,16 @@ const WineListing = ({ listing }) => {
         <p>{listing.region}</p>
         <p>{listing.description}</p>
         {/* Need to work on comments feature */}
+        {/* {commentList && <Comment commentList={commentList} />} */}
         <a href="/">View Comments...</a>
-        <Link to="comments/new" href="/">
-          Add Comment
-        </Link>
+        {/* <Comment commentList={commentList} /> */}
+
+        {loggedInUser && (
+          <a href="/">Add Comments...</a>
+          // <Link to="comments/new" href="/">
+          //   Add Comment
+          // </Link>
+        )}
       </Card.Body>
     </Card>
   );

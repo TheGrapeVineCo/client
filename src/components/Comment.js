@@ -1,9 +1,10 @@
 /* setup but may be redundant - need to look into this further - setup also incomplete*/
-const Comment = ({ message }) => {
+// Renders one comment
+const Comment = ({ comment }) => {
   return (
     <>
-      <p>{message.text}</p>
-      <p>{message.user}</p>
+      <p>{comment.text}</p>
+      <p>{comment.user}</p>
     </>
   );
 };

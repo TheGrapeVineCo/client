@@ -5,10 +5,10 @@ import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
 import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
-// import Comment from "./components/Comment";
-// import NewCommentForm from "./components/Navigation";
+import Comment from "./components/Comment";
+import NewCommentForm from "./components/Navigation";
 import initialWineListings from "./data/wine-listings.json";
-// import initialCommentList from "./data/comments.json";
+import initialCommentList from "./data/comments.json";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -24,21 +24,22 @@ function App() {
   const [wineListings, setWineListings] = useState([]);
 
   /* setup but may be redundant - need to look into this further */
-  // const [commentList, setCommentList] = useState([]);
+  const [commentList, setCommentList] = useState(initialCommentList);
 
   const activateUser = (email) => {
     setLoggedInUser(email);
   };
 
   /* setup but may be redundant - need to look into this further */
-  // const addComment = (text) => {
-  //   const comment = {
-  //     text: text,
-  //     user: loggedInUser,
-  //     id: commentList[commentList.length].id + 1,
-  //   };
-  //   setCommentList((commentList) => [comment, ...commentList]);
-  // };
+  const addComment = (text) => {
+    const comment = {
+      // wine_listing_id: ,
+      text: text,
+      user: loggedInUser,
+      id: commentList[commentList.length].id + 1,
+    };
+    setCommentList((commentList) => [comment, ...commentList]);
+  };
 
   // adds new wine listing to list of wine listings
   const addNewWineListing = ({
@@ -63,8 +64,14 @@ function App() {
     setWineListings((wineListings) => [newListing, ...wineListings]);
   };
 
+  // loads initialWineListings in componentDidMount
   useEffect(() => {
     setWineListings(initialWineListings);
+  }, []);
+
+  // loads initialCommentList in componentDidMount
+  useEffect(() => {
+    setCommentList(initialCommentList);
   }, []);
 
   return (
@@ -85,7 +92,13 @@ function App() {
           <Route path="/" element={<Navigate to="wineListings" replace />} />
           <Route
             path="wineListings"
-            element={<WineListings wineListings={wineListings} />}
+            element={
+              <WineListings
+                loggedInUser={loggedInUser}
+                wineListings={wineListings}
+                commentList={commentList}
+              />
+            }
           />
           {/* setup but may be redundant - need to look into this further */}
           {/* <Route path="comments/new" element={<Comment />} /> */}

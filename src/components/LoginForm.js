@@ -6,26 +6,22 @@ import { useNavigate } from "react-router-dom";
 function LoginForm({ activateUser }) {
   const navigate = useNavigate();
 
-  // upon successful sign-in, user is directed to wineListings
-  const login = (e) => {
-    e.preventDefault();
-    navigate("/wineListings");
-  };
-
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
     password: "",
   };
 
+  // upon successful sign-in, user is directed to wineListings
   const [formData, setFormData] = useState(initialFormData);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     console.log("submit button is working");
     console.log(formData);
     activateUser(formData.email);
     setFormData(initialFormData);
+    e.preventDefault();
+    navigate("/wineListings");
   };
 
   const handleFormData = (e) => {
@@ -58,7 +54,7 @@ function LoginForm({ activateUser }) {
           onChange={handleFormData}
         />
       </Form.Group>
-      <Button className="m-3" variant="primary" type="submit" onClick={login}>
+      <Button className="m-3" variant="primary" type="submit">
         Login
       </Button>
     </Form>
