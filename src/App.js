@@ -24,7 +24,7 @@ function App() {
   const [wineListings, setWineListings] = useState([]);
 
   /* setup but may be redundant - need to look into this further */
-  const [commentList, setCommentList] = useState(initialCommentList);
+  const [allComments, setAllComments] = useState(initialCommentList);
 
   const activateUser = (email) => {
     setLoggedInUser(email);
@@ -36,9 +36,9 @@ function App() {
       // wine_listing_id: ,
       text: text,
       user: loggedInUser,
-      id: commentList[commentList.length].id + 1,
+      id: allComments[allComments.length].id + 1,
     };
-    setCommentList((commentList) => [comment, ...commentList]);
+    setAllComments((allComments) => [comment, ...allComments]);
   };
 
   // adds new wine listing to list of wine listings
@@ -67,12 +67,13 @@ function App() {
   // loads initialWineListings in componentDidMount
   useEffect(() => {
     setWineListings(initialWineListings);
+    setAllComments(initialCommentList);
   }, []);
 
   // loads initialCommentList in componentDidMount
-  useEffect(() => {
-    setCommentList(initialCommentList);
-  }, []);
+  // useEffect(() => {
+  //   setCommentList(initialCommentList);
+  // }, []);
 
   return (
     <div className="App">
@@ -96,7 +97,7 @@ function App() {
               <WineListings
                 loggedInUser={loggedInUser}
                 wineListings={wineListings}
-                commentList={commentList}
+                allComments={allComments}
               />
             }
           />

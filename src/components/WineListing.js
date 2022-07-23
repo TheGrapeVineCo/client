@@ -1,9 +1,14 @@
+import { useState } from "react";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
-// import Comment from "./Comment";
+import Button from "react-bootstrap/Button";
+import Comments from "./Comments";
 
 // Renders individual wine listing
 const WineListing = ({ loggedInUser, listing, commentList }) => {
+  const [showComments, setShowComments] = useState(false);
+  const handleComments = () => {
+    setShowComments(!showComments);
+  };
   return (
     <Card>
       <Card.Body>
@@ -14,17 +19,19 @@ const WineListing = ({ loggedInUser, listing, commentList }) => {
         <p>{listing.country}</p>
         <p>{listing.region}</p>
         <p>{listing.description}</p>
-        {/* Need to work on comments feature */}
-        {/* {commentList && <Comment commentList={commentList} />} */}
-        <a href="/">View Comments...</a>
-        {/* <Comment commentList={commentList} /> */}
 
-        {loggedInUser && (
-          <a href="/">Add Comments...</a>
-          // <Link to="comments/new" href="/">
-          //   Add Comment
-          // </Link>
+        {/* Coerce commentList length to boolean value to render button */}
+        {!!commentList.length && (
+          <>
+            <Button variant="link" onClick={handleComments}>
+              {showComments ? `Hide` : `View`} Comments...
+            </Button>
+            {showComments && <Comments commentList={commentList} />}
+          </>
         )}
+
+        {/* Only render comments link if user logged in */}
+        {loggedInUser && <Card.Link href="/">Add Comment</Card.Link>}
       </Card.Body>
     </Card>
   );
