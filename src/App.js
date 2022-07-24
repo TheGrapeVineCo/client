@@ -5,7 +5,6 @@ import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
 import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
-import Comment from "./components/Comment";
 import NewCommentForm from "./components/Navigation";
 import initialWineListings from "./data/wine-listings.json";
 import initialCommentList from "./data/comments.json";
@@ -22,8 +21,7 @@ function App() {
   // set loggedin user to empty string meaning no user is logged in
   const [loggedInUser, setLoggedInUser] = useState("");
   const [wineListings, setWineListings] = useState([]);
-
-  /* setup but may be redundant - need to look into this further */
+  // adds state to comments associated with wineListings
   const [allComments, setAllComments] = useState(initialCommentList);
 
   const activateUser = (email) => {
@@ -64,16 +62,11 @@ function App() {
     setWineListings((wineListings) => [newListing, ...wineListings]);
   };
 
-  // loads initialWineListings in componentDidMount
+  // loads initialWineListings and initialCommentList in componentDidMount
   useEffect(() => {
     setWineListings(initialWineListings);
     setAllComments(initialCommentList);
   }, []);
-
-  // loads initialCommentList in componentDidMount
-  // useEffect(() => {
-  //   setCommentList(initialCommentList);
-  // }, []);
 
   return (
     <div className="App">
@@ -104,21 +97,6 @@ function App() {
           {/* setup but may be redundant - need to look into this further */}
           {/* <Route path="comments/new" element={<Comment />} /> */}
           <Route path="about" element={<About />} />
-          {/* setup the below commented out lines but may be redundant - need to look into this further */}
-          {/* When no user signed in, render loginForm */}
-          {/* <Route
-            path="comment/new"
-            element={
-              loggedInUser ? (
-                <NewCommentForm
-                  loggedInUser={loggedInUser}
-                  addComment={addComment}
-                />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          /> */}
           <Route
             path="login"
             element={<LoginForm activateUser={activateUser} />}
