@@ -69,7 +69,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" data-testid="app-element">
       {/* When no user signed in, render loginForm */}
       {/* {!loggedInUser && <LoginForm activateUser={activateUser} />} */}
 

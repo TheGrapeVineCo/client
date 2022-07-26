@@ -1,9 +1,15 @@
+/**
+ * @jest-environment jsdom
+ */
+import "@testing-library/jest-dom";
+import React from "react";
 import { render, screen } from "@testing-library/react";
+
 import App from "../src/App";
 
-test("renders the landing page and its key components", () => {
-  render(<App />);
-  expect(screen.getByRole("Navbar.Brand")).toHaveDisplayValue("The GrapeVine");
-  expect(screen.getByRole("svg")).toBeInTheDocument();
-  expect(screen.getByText("p")).toHaveDisplayValue("Torbreck");
+describe("App", () => {
+  test("renders App component", () => {
+    render(<App />);
+    expect(screen.getByTestId("app-element")).toBeInTheDocument();
+  });
 });
