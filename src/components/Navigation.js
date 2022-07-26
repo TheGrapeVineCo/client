@@ -22,12 +22,12 @@ const Navigation = ({ loggedInUser, activateUser }) => {
         <Navbar.Brand as={Link} to="/wineListings">
           The GrapeVine
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav
-            className="ms-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
+            className="me-auto"
+            // style={{ maxHeight: "100px" }}
+            // navbarScroll
           >
             <Form className="d-flex">
               <Form.Control
@@ -87,7 +87,7 @@ const Navigation = ({ loggedInUser, activateUser }) => {
                   />
                 </svg>
               }
-              id="navbarScrollingDropdown"
+              id="basic-navbar-nav"
             >
               {loggedInUser ? (
                 <>
