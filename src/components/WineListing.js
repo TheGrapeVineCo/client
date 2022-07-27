@@ -6,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 
 // Renders individual wine listing
-const WineListing = ({ loggedInUser, listing, commentList }) => {
+const WineListing = ({ loggedInUser, listing, commentList, addComment }) => {
   const [showComments, setShowComments] = useState(false);
   const handleComments = () => {
     setShowComments(!showComments);
@@ -21,18 +21,36 @@ const WineListing = ({ loggedInUser, listing, commentList }) => {
   // Closes modal
   const handleClose = () => setNewComment(false);
 
-  // sets initial FormData fields to empty
+  // sets initial FormData fields to empty for newCommentForm
   const initialFormData = {
     text: "",
+    user: loggedInUser,
   };
   // provides state to text field in newCommentForm
   const [formData, setFormData] = useState(initialFormData);
 
   const handleFormData = (e) => {
+    // console.log(e.target.value);
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Need to review validation so it notifies user that empty string cannot be posted
+    if (formData.text === "") {
+      console.log("Empty message");
+    } else {
+      // console.log(formData);
+      clearFormData();
+      console.log(addComment(formData.text));
+    }
+  };
+  //   clears the form data for next entry
+  const clearFormData = () => {
+    setFormData(initialFormData);
   };
 
   return (
@@ -75,23 +93,33 @@ const WineListing = ({ loggedInUser, listing, commentList }) => {
               Share your thoughts on the 🍷
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <Form.Group>
-              <Form.Label>✍️</Form.Label>
-              <Form.Control
-                type="text"
-                as="textarea"
-                rows={2}
-                placeholder="What are your thoughts on this wine..."
-                onChange={handleFormData}
-              />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Submit
-            </Button>
-          </Modal.Footer>
+          <Form onSubmit={handleSubmit}>
+            <Modal.Body>
+              <Form.Group>
+                <Form.Label>✍️</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="text"
+                  name="text"
+                  as="textarea"
+                  rows={2}
+                  placeholder="What are your thoughts on this wine..."
+                  value={formData.text}
+                  onChange={handleFormData}
+                />
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                type="submit"
+                value="post"
+                onClick={handleClose}
+              >
+                Post
+              </Button>
+            </Modal.Footer>
+          </Form>
         </Modal>
       </Card.Body>
     </Card>

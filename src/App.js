@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
-import NewWineForm from "./components/NewWineForm";
+// import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
-import NewCommentForm from "./components/Navigation";
+// import NewCommentForm from "./components/Navigation";
 import initialWineListings from "./data/wine-listings.json";
 import initialCommentList from "./data/comments.json";
 import {
@@ -21,22 +21,11 @@ function App() {
   // set loggedin user to empty string meaning no user is logged in
   const [loggedInUser, setLoggedInUser] = useState("");
   const [wineListings, setWineListings] = useState([]);
-  // adds state to comments associated with wineListings
+  // adds state to comments associated with wineListings with the inirialCommentList as default data
   const [allComments, setAllComments] = useState(initialCommentList);
 
   const activateUser = (email) => {
     setLoggedInUser(email);
-  };
-
-  /* setup but may be redundant - need to look into this further */
-  const addComment = (text) => {
-    const comment = {
-      // wine_listing_id: ,
-      text: text,
-      user: loggedInUser,
-      id: allComments[allComments.length].id + 1,
-    };
-    setAllComments((allComments) => [comment, ...allComments]);
   };
 
   // adds new wine listing to list of wine listings
@@ -60,6 +49,17 @@ function App() {
       id: wineListings[0].id + 1,
     };
     setWineListings((wineListings) => [newListing, ...wineListings]);
+  };
+  /* Should be adding new comments to wineLising */
+  // each time this function is run, adds new comment to list
+  const addComment = (text) => {
+    const comment = {
+      // wine_listing_id: listing.id,
+      text: text,
+      user: loggedInUser,
+      // id: allComments[allComments.length].id + 1,
+    };
+    setAllComments((allComments) => [comment, ...allComments]);
   };
 
   // loads initialWineListings and initialCommentList in componentDidMount
@@ -91,6 +91,8 @@ function App() {
                 loggedInUser={loggedInUser}
                 wineListings={wineListings}
                 allComments={allComments}
+                addComment={addComment}
+                // addNewUserComment={addNewUserComment}
               />
             }
           />

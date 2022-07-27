@@ -1,6 +1,11 @@
 import WineListing from "./WineListing";
 
-const WineListings = ({ loggedInUser, wineListings, allComments }) => {
+const WineListings = ({
+  loggedInUser,
+  wineListings,
+  allComments,
+  addComment,
+}) => {
   return (
     <>
       <h1>Hello world!</h1>
@@ -23,6 +28,7 @@ const WineListings = ({ loggedInUser, wineListings, allComments }) => {
             listing={listing}
             loggedInUser={loggedInUser}
             commentList={comments}
+            addComment={addComment}
           />
         );
       })}
