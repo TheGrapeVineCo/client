@@ -15,6 +15,7 @@ function LoginForm({ activateUser }) {
   // upon successful sign-in, user is directed to wineListings
   const [formData, setFormData] = useState(initialFormData);
 
+  // upon successful sign-in, user is directed to wineListings
   const handleSubmit = (e) => {
     activateUser(formData.email);
     setFormData(initialFormData);
