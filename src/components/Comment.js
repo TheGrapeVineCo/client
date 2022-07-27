@@ -1,9 +1,9 @@
-/* setup but may be redundant - need to look into this further - setup also incomplete*/
-const Comment = ({ message }) => {
+// Renders one comment from 'Comments' component
+const Comment = ({ commentList }) => {
   return (
     <>
-      <p>{message.text}</p>
-      <p>{message.user}</p>
+      <p>{commentList.text}</p>
+      <p>{commentList.user}</p>
     </>
   );
 };

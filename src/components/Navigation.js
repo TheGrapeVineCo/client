@@ -5,8 +5,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
+import { useGlobalState } from "../utils/stateContext";
 
 const Navigation = ({ loggedInUser, activateUser }) => {
+  const { store, dispatch } = useGlobalState();
+  // takes loggedInUser from globalstate
+  // const { loggedInUser } = store;
+
   const navigate = useNavigate();
 
   // performs logout function by clearing the loggedin user and redirects to home page
@@ -91,6 +96,10 @@ const Navigation = ({ loggedInUser, activateUser }) => {
             >
               {loggedInUser ? (
                 <>
+                  {/* Need to include logic for only admin to have access to NewWineForm */}
+                  <NavDropdown.Item as={Link} to="/newListing">
+                    Create New Listing
+                  </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/about">
                     About
                   </NavDropdown.Item>

@@ -32,8 +32,6 @@ function NewWineForm({ addNewWineListing }) {
   //   needs validation to ensure empty data is submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    // console.log(e.target.value); renders undefined
     addNewWineListing(formData);
     clearFormData();
     // may need to change to admin dashboard
