@@ -29,8 +29,7 @@ function App() {
 
   // returns an array with 2 elements: store (initial state) & dispatch to handle state
   const [store, dispatch] = useReducer(reducer, initialState);
-  const { wineListings, allComments, loggedInUser } = store;
-  console.log(allComments);
+  const { wineListings, loggedInUser } = store;
 
   const activateUser = (email) => {
     // setLoggedInUser(email);

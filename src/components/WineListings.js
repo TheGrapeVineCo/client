@@ -4,11 +4,9 @@ import WineListing from "./WineListing";
 const WineListings = () => {
   const { store } = useGlobalState();
   const { wineListings, loggedInUser, allComments, addComment } = store;
-  console.log(store);
 
   return (
     <>
-      <h1>Hello world!</h1>
       {wineListings.map((listing) => {
         // Iterate over all comments
         // Pick out comments that belong to post
@@ -20,7 +18,6 @@ const WineListings = () => {
             comments.push(c);
           }
         });
-        console.log({ comments, id: listing.id });
 
         return (
           <WineListing

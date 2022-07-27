@@ -16,8 +16,6 @@ function LoginForm({ activateUser }) {
   const [formData, setFormData] = useState(initialFormData);
 
   const handleSubmit = (e) => {
-    console.log("submit button is working");
-    console.log(formData);
     activateUser(formData.email);
     setFormData(initialFormData);
     e.preventDefault();

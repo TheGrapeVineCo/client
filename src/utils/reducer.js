@@ -1,7 +1,5 @@
 // handles all the states used throughout app
 export const reducer = (state, action) => {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
     // populates page with wineListings
     case "setWineListings": {
