@@ -1,11 +1,11 @@
+import { useGlobalState } from "../utils/stateContext";
 import WineListing from "./WineListing";
 
-const WineListings = ({
-  loggedInUser,
-  wineListings,
-  allComments,
-  addComment,
-}) => {
+const WineListings = () => {
+  const { store } = useGlobalState();
+  const { wineListings, loggedInUser, allComments, addComment } = store;
+  console.log(store);
+
   return (
     <>
       <h1>Hello world!</h1>

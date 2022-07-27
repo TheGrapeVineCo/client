@@ -1,3 +1,4 @@
+import { useGlobalState } from "../utils/stateContext";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -7,6 +8,7 @@ import { Form } from "react-bootstrap";
 
 // Renders individual wine listing
 const WineListing = ({ loggedInUser, listing, commentList, addComment }) => {
+  const { dispatch } = useGlobalState();
   const [showComments, setShowComments] = useState(false);
   const handleComments = () => {
     setShowComments(!showComments);
@@ -25,12 +27,13 @@ const WineListing = ({ loggedInUser, listing, commentList, addComment }) => {
   const initialFormData = {
     text: "",
     user: loggedInUser,
+    wine_listing_id: listing.id,
   };
   // provides state to text field in newCommentForm
   const [formData, setFormData] = useState(initialFormData);
 
   const handleFormData = (e) => {
-    // console.log(e.target.value);
+    console.log(formData);
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
@@ -43,9 +46,17 @@ const WineListing = ({ loggedInUser, listing, commentList, addComment }) => {
     if (formData.text === "") {
       console.log("Empty message");
     } else {
-      // console.log(formData);
+      setFormData({
+        ...formData,
+        // not meant to render in UI - for BE purposes
+        id: "REPLACE THIS WITH ID FROM THE BE",
+      });
+      console.log(formData);
       clearFormData();
-      console.log(addComment(formData.text));
+      dispatch({
+        type: "addComment",
+        data: formData,
+      });
     }
   };
   //   clears the form data for next entry

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
@@ -17,6 +17,7 @@ import {
 import About from "./components/About";
 import NotFound from "./components/NotFound";
 import { reducer } from "./utils/reducer";
+import { StateContext } from "./utils/stateContext";
 
 function App() {
   // defines initial state
@@ -29,6 +30,7 @@ function App() {
   // returns an array with 2 elements: store (initial state) & dispatch to handle state
   const [store, dispatch] = useReducer(reducer, initialState);
   const { wineListings, allComments, loggedInUser } = store;
+  console.log(allComments);
 
   const activateUser = (email) => {
     // setLoggedInUser(email);
@@ -63,20 +65,6 @@ function App() {
       data: newListing,
     });
   };
-  /* Should be adding new comments to wineLising - not working yet*/
-  // each time this function is run, adds new comment to list
-  const addComment = (text) => {
-    const comment = {
-      // wine_listing_id: listing.id,
-      text: text,
-      user: loggedInUser,
-      id: allComments[allComments.length].id + 1,
-    };
-    dispatch({
-      type: "addComment",
-      data: comment,
-    });
-  };
 
   // loads initialWineListings and initialCommentList in componentDidMount
   useEffect(() => {
@@ -95,38 +83,34 @@ function App() {
     <div className="App" data-testid="app-element">
       {/* Need to include logic for only admin to have access to NewWineForm */}
 
-      {/* provides SPA routing in FE */}
-      <Router>
-        <header className="App-header">
-          <Navigation loggedInUser={loggedInUser} activateUser={activateUser} />
-        </header>
-        <Routes>
-          <Route path="/" element={<Navigate to="wineListings" replace />} />
-          <Route
-            path="wineListings"
-            element={
-              <WineListings
-                loggedInUser={loggedInUser}
-                wineListings={wineListings}
-                allComments={allComments}
-                addComment={addComment}
-              />
-            }
-          />
-          <Route path="about" element={<About />} />
-          <Route
-            path="login"
-            element={<LoginForm activateUser={activateUser} />}
-          />
-          <Route path="ratings" element={<Ratings />} />
-          {/* Need to include logic for only admin to have access to NewWineForm */}
-          <Route
-            path="newListing"
-            element={<NewWineForm addNewWineListing={addNewWineListing} />}
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+      {/* Includes all components using global state in state context provider */}
+      <StateContext.Provider value={{ store, dispatch }}>
+        {/* provides SPA routing in FE */}
+        <Router>
+          <header className="App-header">
+            <Navigation
+              loggedInUser={loggedInUser}
+              activateUser={activateUser}
+            />
+          </header>
+          <Routes>
+            <Route path="/" element={<Navigate to="wineListings" replace />} />
+            <Route path="wineListings" element={<WineListings />} />
+            <Route path="about" element={<About />} />
+            <Route
+              path="login"
+              element={<LoginForm activateUser={activateUser} />}
+            />
+            <Route path="ratings" element={<Ratings />} />
+            {/* Need to include logic for only admin to have access to NewWineForm */}
+            <Route
+              path="newListing"
+              element={<NewWineForm addNewWineListing={addNewWineListing} />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </StateContext.Provider>
     </div>
   );
 }

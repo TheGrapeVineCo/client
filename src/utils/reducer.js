@@ -7,6 +7,9 @@ export const reducer = (state, action) => {
     case "setWineListings": {
       return { ...state, wineListings: action.data };
     }
+    case "setAllComments": {
+      return { ...state, allComments: action.data };
+    }
     case "cleanState": {
       return {
         wineListings: [],
