@@ -4,16 +4,41 @@ import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
 import NewWineForm from "./components/NewWineForm";
+import Ratings from "./components/Ratings";
+// import Comment from "./components/Comment";
+// import NewCommentForm from "./components/Navigation";
 import initialWineListings from "./data/wine-listings.json";
+// import initialCommentList from "./data/comments.json";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
+import About from "./components/About";
+import NotFound from "./components/NotFound";
 
 function App() {
   // set loggedin user to empty string meaning no user is logged in
   const [loggedInUser, setLoggedInUser] = useState("");
   const [wineListings, setWineListings] = useState([]);
 
+  /* setup but may be redundant - need to look into this further */
+  // const [commentList, setCommentList] = useState([]);
+
   const activateUser = (email) => {
     setLoggedInUser(email);
   };
+
+  /* setup but may be redundant - need to look into this further */
+  // const addComment = (text) => {
+  //   const comment = {
+  //     text: text,
+  //     user: loggedInUser,
+  //     id: commentList[commentList.length].id + 1,
+  //   };
+  //   setCommentList((commentList) => [comment, ...commentList]);
+  // };
 
   // adds new wine listing to list of wine listings
   const addNewWineListing = ({
@@ -44,16 +69,50 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Navigation loggedInUser={loggedInUser} activateUser={activateUser} />
+      {/* When no user signed in, render loginForm */}
+      {/* {!loggedInUser && <LoginForm activateUser={activateUser} />} */}
 
-        {/* When no user signed in, render loginForm */}
-        {!loggedInUser && <LoginForm activateUser={activateUser} />}
+      {/* Need to include logic for only admin to have access to NewWineForm */}
+      {/* <NewWineForm addNewWineListing={addNewWineListing} /> */}
+      {/* <WineListings wineListings={wineListings} /> */}
 
-        {/* Need to include logic for only admin to have access to NewWineForm */}
-        <NewWineForm addNewWineListing={addNewWineListing} />
-        <WineListings wineListings={wineListings} />
-      </header>
+      {/* provides SPA routing in FE */}
+      <Router>
+        <header className="App-header">
+          <Navigation loggedInUser={loggedInUser} activateUser={activateUser} />
+        </header>
+        <Routes>
+          <Route path="/" element={<Navigate to="wineListings" replace />} />
+          <Route
+            path="wineListings"
+            element={<WineListings wineListings={wineListings} />}
+          />
+          {/* setup but may be redundant - need to look into this further */}
+          {/* <Route path="comments/new" element={<Comment />} /> */}
+          <Route path="about" element={<About />} />
+          {/* setup the below commented out lines but may be redundant - need to look into this further */}
+          {/* When no user signed in, render loginForm */}
+          {/* <Route
+            path="comment/new"
+            element={
+              loggedInUser ? (
+                <NewCommentForm
+                  loggedInUser={loggedInUser}
+                  addComment={addComment}
+                />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          /> */}
+          <Route
+            path="login"
+            element={<LoginForm activateUser={activateUser} />}
+          />
+          <Route path="ratings" element={<Ratings />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

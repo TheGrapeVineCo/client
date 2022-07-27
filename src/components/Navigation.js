@@ -4,22 +4,30 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navigation = ({ loggedInUser, activateUser }) => {
+  const navigate = useNavigate();
+
+  // performs logout function by clearing the loggedin user and redirects to home page
   const logout = (e) => {
     e.preventDefault();
     activateUser("");
+    navigate("/wineListings");
   };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">The GrapeVine</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Brand as={Link} to="/wineListings">
+          The GrapeVine
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav
-            className="ms-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
+            className="me-auto"
+            // style={{ maxHeight: "100px" }}
+            // navbarScroll
           >
             <Form className="d-flex">
               <Form.Control
@@ -30,7 +38,7 @@ const Navigation = ({ loggedInUser, activateUser }) => {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
-            <Nav.Link href="/">
+            <Nav.Link as={Link} to="/wineListings">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -49,7 +57,7 @@ const Navigation = ({ loggedInUser, activateUser }) => {
                 />
               </svg>
             </Nav.Link>
-            <Nav.Link href="/">
+            <Nav.Link as={Link} to="/ratings">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -79,23 +87,43 @@ const Navigation = ({ loggedInUser, activateUser }) => {
                   />
                 </svg>
               }
-              id="navbarScrollingDropdown"
+              id="basic-navbar-nav"
             >
               {loggedInUser ? (
                 <>
-                  <NavDropdown.Item href="/">My Wines</NavDropdown.Item>
-                  <NavDropdown.Item href="/" onClick={logout}>
+                  <NavDropdown.Item as={Link} to="/about">
+                    About
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/myWines">
+                    My Wines
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/wineListings"
+                    onClick={logout}
+                  >
                     Logout
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/contact">
+                    Contact Us
+                  </NavDropdown.Item>
                 </>
               ) : (
                 <>
-                  <NavDropdown.Item href="/">Login</NavDropdown.Item>
-                  <NavDropdown.Item href="/">Sign-up</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/about">
+                    About
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/login">
+                    Login
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/signup">
+                    Sign-up
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/">Contact Us</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/contact">
+                    Contact Us
+                  </NavDropdown.Item>
                 </>
               )}
             </NavDropdown>

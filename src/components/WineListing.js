@@ -1,4 +1,5 @@
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const WineListing = ({ listing }) => {
   return (
@@ -11,6 +12,11 @@ const WineListing = ({ listing }) => {
         <p>{listing.country}</p>
         <p>{listing.region}</p>
         <p>{listing.description}</p>
+        {/* Need to work on comments feature */}
+        <a href="/">View Comments...</a>
+        <Link to="comments/new" href="/">
+          Add Comment
+        </Link>
       </Card.Body>
     </Card>
   );

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ activateUser }) {
+  const navigate = useNavigate();
+
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
@@ -11,12 +14,14 @@ function LoginForm({ activateUser }) {
 
   const [formData, setFormData] = useState(initialFormData);
 
+  // upon successful sign-in, user is directed to wineListings
   const handleSubmit = (e) => {
-    e.preventDefault();
     console.log("submit button is working");
     console.log(formData);
     activateUser(formData.email);
     setFormData(initialFormData);
+    e.preventDefault();
+    navigate("/wineListings");
   };
 
   const handleFormData = (e) => {
