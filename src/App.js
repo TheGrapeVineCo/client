@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
-// import NewWineForm from "./components/NewWineForm";
+import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
 // import NewCommentForm from "./components/Navigation";
 import initialWineListings from "./data/wine-listings.json";
@@ -16,16 +16,26 @@ import {
 } from "react-router-dom";
 import About from "./components/About";
 import NotFound from "./components/NotFound";
+import { reducer } from "./utils/reducer";
 
 function App() {
-  // set loggedin user to empty string meaning no user is logged in
-  const [loggedInUser, setLoggedInUser] = useState("");
-  const [wineListings, setWineListings] = useState([]);
-  // adds state to comments associated with wineListings with the inirialCommentList as default data
-  const [allComments, setAllComments] = useState(initialCommentList);
+  // defines initial state
+  const initialState = {
+    wineListings: [],
+    allComments: [],
+    loggedInUser: "",
+  };
+
+  // returns an array with 2 elements: store (initial state) & dispatch to handle state
+  const [store, dispatch] = useReducer(reducer, initialState);
+  const { wineListings, allComments, loggedInUser } = store;
 
   const activateUser = (email) => {
-    setLoggedInUser(email);
+    // setLoggedInUser(email);
+    dispatch({
+      type: "setLoggedInUser",
+      data: email,
+    });
   };
 
   // adds new wine listing to list of wine listings
@@ -48,34 +58,42 @@ function App() {
       description: description,
       id: wineListings[0].id + 1,
     };
-    setWineListings((wineListings) => [newListing, ...wineListings]);
+    dispatch({
+      type: "addNewWineListing",
+      data: newListing,
+    });
   };
-  /* Should be adding new comments to wineLising */
+  /* Should be adding new comments to wineLising - not working yet*/
   // each time this function is run, adds new comment to list
   const addComment = (text) => {
     const comment = {
       // wine_listing_id: listing.id,
       text: text,
       user: loggedInUser,
-      // id: allComments[allComments.length].id + 1,
+      id: allComments[allComments.length].id + 1,
     };
-    setAllComments((allComments) => [comment, ...allComments]);
+    dispatch({
+      type: "addComment",
+      data: comment,
+    });
   };
 
   // loads initialWineListings and initialCommentList in componentDidMount
   useEffect(() => {
-    setWineListings(initialWineListings);
-    setAllComments(initialCommentList);
+    // fetch
+    dispatch({
+      type: "setWineListings",
+      data: initialWineListings,
+    });
+    dispatch({
+      type: "setAllComments",
+      data: initialCommentList,
+    });
   }, []);
 
   return (
     <div className="App" data-testid="app-element">
-      {/* When no user signed in, render loginForm */}
-      {/* {!loggedInUser && <LoginForm activateUser={activateUser} />} */}
-
       {/* Need to include logic for only admin to have access to NewWineForm */}
-      {/* <NewWineForm addNewWineListing={addNewWineListing} /> */}
-      {/* <WineListings wineListings={wineListings} /> */}
 
       {/* provides SPA routing in FE */}
       <Router>
@@ -92,18 +110,20 @@ function App() {
                 wineListings={wineListings}
                 allComments={allComments}
                 addComment={addComment}
-                // addNewUserComment={addNewUserComment}
               />
             }
           />
-          {/* setup but may be redundant - need to look into this further */}
-          {/* <Route path="comments/new" element={<Comment />} /> */}
           <Route path="about" element={<About />} />
           <Route
             path="login"
             element={<LoginForm activateUser={activateUser} />}
           />
           <Route path="ratings" element={<Ratings />} />
+          {/* Need to include logic for only admin to have access to NewWineForm */}
+          <Route
+            path="newListing"
+            element={<NewWineForm addNewWineListing={addNewWineListing} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

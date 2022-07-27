@@ -91,6 +91,10 @@ const Navigation = ({ loggedInUser, activateUser }) => {
             >
               {loggedInUser ? (
                 <>
+                  {/* Need to include logic for only admin to have access to NewWineForm */}
+                  <NavDropdown.Item as={Link} to="/newListing">
+                    Create New Listing
+                  </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/about">
                     About
                   </NavDropdown.Item>
