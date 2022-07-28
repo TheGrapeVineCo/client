@@ -4,9 +4,12 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Comments from "./Comments";
 import NewCommentModal from "./NewCommentModal";
+import { useGlobalState } from "../utils/stateContext";
 
 // Renders individual wine listing
-const WineListing = ({ loggedInUser, listing, commentList, addComment }) => {
+const WineListing = ({ listing, commentList }) => {
+  const { store } = useGlobalState();
+  const { loggedInUser } = store;
   const [showComments, setShowComments] = useState(false);
   const handleComments = () => {
     setShowComments(!showComments);
@@ -41,10 +44,11 @@ const WineListing = ({ loggedInUser, listing, commentList, addComment }) => {
         )}
 
         {/* Only render comments link if user logged in */}
-        {/* {loggedInUser && <Card.Link href="/">Add Comment</Card.Link>} */}
-        <Button variant="primary" onClick={handleShow}>
-          Add Comment
-        </Button>
+        {loggedInUser && (
+          <Button variant="primary" onClick={handleShow}>
+            Add Comment
+          </Button>
+        )}
 
         <NewCommentModal
           show={showCommentModal}

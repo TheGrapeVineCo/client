@@ -4,9 +4,12 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../utils/stateContext";
 
 // somehow need to pass eg. "loggedInAdmin" param so only admins can fill out this form
-function NewWineForm({ addNewWineListing }) {
+function NewWineForm() {
+  const { store, dispatch } = useGlobalState();
+  const { wineListings } = store;
   const navigate = useNavigate();
   // Sets initial fields as empty
   const initialFormData = {
@@ -17,6 +20,32 @@ function NewWineForm({ addNewWineListing }) {
     country: "",
     region: "",
     description: "",
+  };
+
+  // adds new wine listing to list of wine listings
+  const addNewWineListing = ({
+    brand,
+    grape_variety,
+    year,
+    category,
+    country,
+    region,
+    description,
+  }) => {
+    const newListing = {
+      brand: brand,
+      grape_variety: grape_variety,
+      year: year,
+      category: category,
+      country: country,
+      region: region,
+      description: description,
+      id: wineListings[0].id + 1,
+    };
+    dispatch({
+      type: "addNewWineListing",
+      data: newListing,
+    });
   };
 
   const [formData, setFormData] = useState(initialFormData);
