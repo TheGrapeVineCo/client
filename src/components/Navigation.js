@@ -5,10 +5,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalState } from "../utils/stateContext";
+// import { useGlobalState } from "../utils/stateContext";
 
 const Navigation = ({ loggedInUser, activateUser }) => {
-  const { store, dispatch } = useGlobalState();
+  // const { store, dispatch } = useGlobalState();
   // takes loggedInUser from globalstate
   // const { loggedInUser } = store;
 
@@ -22,7 +22,7 @@ const Navigation = ({ loggedInUser, activateUser }) => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" data-testid="navigation-element">
       <Container fluid>
         <Navbar.Brand as={Link} to="/wineListings">
           The GrapeVine

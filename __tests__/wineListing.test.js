@@ -5,8 +5,6 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import WineListing from "../src/components/WineListing";
 
-// import WineListing from "../src/components/WineListing";
-
 // test block
 describe("WineListing", () => {
   test("should show wine listing", () => {

@@ -65,6 +65,7 @@ const NewCommentModal = ({ show, handleClose, loggedInUser, listing }) => {
           <Form.Group>
             {/* <Form.Label>✍️</Form.Label> */}
             <Form.Control
+              data-testid="comment-input"
               type="text"
               id="text"
               name="text"

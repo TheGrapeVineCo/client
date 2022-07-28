@@ -32,6 +32,7 @@ function LoginForm({ activateUser }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <h1>Login</h1>
       <Form.Group className="m-3" controlId="email">
         <Form.Label>Email Address:</Form.Label>
         <Form.Control

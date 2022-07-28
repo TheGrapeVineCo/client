@@ -9,7 +9,7 @@ import Ratings from "./components/Ratings";
 import initialWineListings from "./data/wine-listings.json";
 import initialCommentList from "./data/comments.json";
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
   Navigate,
   Route,
   Routes,
@@ -85,30 +85,26 @@ function App() {
       {/* Includes all components using global state in state context provider */}
       <StateContext.Provider value={{ store, dispatch }}>
         {/* provides SPA routing in FE */}
-        <Router>
-          <header className="App-header">
-            <Navigation
-              loggedInUser={loggedInUser}
-              activateUser={activateUser}
-            />
-          </header>
-          <Routes>
-            <Route path="/" element={<Navigate to="wineListings" replace />} />
-            <Route path="wineListings" element={<WineListings />} />
-            <Route path="about" element={<About />} />
-            <Route
-              path="login"
-              element={<LoginForm activateUser={activateUser} />}
-            />
-            <Route path="ratings" element={<Ratings />} />
-            {/* Need to include logic for only admin to have access to NewWineForm */}
-            <Route
-              path="newListing"
-              element={<NewWineForm addNewWineListing={addNewWineListing} />}
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
+
+        <header className="App-header">
+          <Navigation loggedInUser={loggedInUser} activateUser={activateUser} />
+        </header>
+        <Routes>
+          <Route path="/" element={<Navigate to="wineListings" replace />} />
+          <Route path="wineListings" element={<WineListings />} />
+          <Route path="about" element={<About />} />
+          <Route
+            path="login"
+            element={<LoginForm activateUser={activateUser} />}
+          />
+          <Route path="ratings" element={<Ratings />} />
+          {/* Need to include logic for only admin to have access to NewWineForm */}
+          <Route
+            path="newListing"
+            element={<NewWineForm addNewWineListing={addNewWineListing} />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </StateContext.Provider>
     </div>
   );
