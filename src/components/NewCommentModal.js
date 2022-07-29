@@ -48,6 +48,7 @@ const NewCommentModal = ({ show, handleClose, loggedInUser, listing }) => {
 
   return (
     <Modal
+      data-testid="modal-element"
       show={show}
       onHide={handleClose}
       backdrop="static"
