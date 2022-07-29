@@ -3,7 +3,7 @@ import WineListing from "./WineListing";
 
 const WineListings = () => {
   const { store } = useGlobalState();
-  const { wineListings, loggedInUser, allComments, addComment } = store;
+  const { wineListings, allComments, addComment } = store;
 
   return (
     <>
@@ -23,7 +23,6 @@ const WineListings = () => {
           <WineListing
             key={listing.id}
             listing={listing}
-            loggedInUser={loggedInUser}
             commentList={comments}
             addComment={addComment}
           />

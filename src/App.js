@@ -5,7 +5,6 @@ import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
 import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
-// import NewCommentForm from "./components/Navigation";
 import initialWineListings from "./data/wine-listings.json";
 import initialCommentList from "./data/comments.json";
 import {
@@ -29,41 +28,6 @@ function App() {
 
   // returns an array with 2 elements: store (initial state) & dispatch to handle state
   const [store, dispatch] = useReducer(reducer, initialState);
-  const { wineListings, loggedInUser } = store;
-
-  const activateUser = (email) => {
-    // setLoggedInUser(email);
-    dispatch({
-      type: "setLoggedInUser",
-      data: email,
-    });
-  };
-
-  // adds new wine listing to list of wine listings
-  const addNewWineListing = ({
-    brand,
-    grape_variety,
-    year,
-    category,
-    country,
-    region,
-    description,
-  }) => {
-    const newListing = {
-      brand: brand,
-      grape_variety: grape_variety,
-      year: year,
-      category: category,
-      country: country,
-      region: region,
-      description: description,
-      id: wineListings[0].id + 1,
-    };
-    dispatch({
-      type: "addNewWineListing",
-      data: newListing,
-    });
-  };
 
   // loads initialWineListings and initialCommentList in componentDidMount
   useEffect(() => {
@@ -80,32 +44,21 @@ function App() {
 
   return (
     <div className="App" data-testid="app-element">
-      {/* Need to include logic for only admin to have access to NewWineForm */}
-
       {/* Includes all components using global state in state context provider */}
       <StateContext.Provider value={{ store, dispatch }}>
-        {/* provides SPA routing in FE */}
+        {/* provides SPA routing in FE to navigate across site */}
         <Router>
           <header className="App-header">
-            <Navigation
-              loggedInUser={loggedInUser}
-              activateUser={activateUser}
-            />
+            <Navigation />
           </header>
           <Routes>
             <Route path="/" element={<Navigate to="wineListings" replace />} />
             <Route path="wineListings" element={<WineListings />} />
             <Route path="about" element={<About />} />
-            <Route
-              path="login"
-              element={<LoginForm activateUser={activateUser} />}
-            />
+            <Route path="login" element={<LoginForm />} />
             <Route path="ratings" element={<Ratings />} />
             {/* Need to include logic for only admin to have access to NewWineForm */}
-            <Route
-              path="newListing"
-              element={<NewWineForm addNewWineListing={addNewWineListing} />}
-            />
+            <Route path="newListing" element={<NewWineForm />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

@@ -7,17 +7,18 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalState } from "../utils/stateContext";
 
-const Navigation = ({ loggedInUser, activateUser }) => {
+const Navigation = () => {
   const { store, dispatch } = useGlobalState();
-  // takes loggedInUser from globalstate
-  // const { loggedInUser } = store;
-
+  const { loggedInUser } = store;
   const navigate = useNavigate();
 
   // performs logout function by clearing the loggedin user and redirects to home page
   const logout = (e) => {
     e.preventDefault();
-    activateUser("");
+    dispatch({
+      type: "setLoggedInUser",
+      data: "",
+    });
     navigate("/wineListings");
   };
 

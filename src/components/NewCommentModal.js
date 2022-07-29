@@ -5,8 +5,9 @@ import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 
-const NewCommentModal = ({ show, handleClose, loggedInUser, listing }) => {
-  const { dispatch } = useGlobalState();
+const NewCommentModal = ({ show, handleClose, listing }) => {
+  const { store, dispatch } = useGlobalState();
+  const { loggedInUser } = store;
   // sets initial FormData fields to empty for newCommentForm
   const initialFormData = {
     text: "",
