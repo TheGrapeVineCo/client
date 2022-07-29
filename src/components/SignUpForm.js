@@ -1,15 +1,19 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../services/authServices";
 import { useGlobalState } from "../utils/stateContext";
-function LoginForm() {
+
+function SignUpForm() {
   const { dispatch } = useGlobalState();
   const navigate = useNavigate();
   // creates initial form data as clean fields
   const initialFormData = {
+    username: "",
     email: "",
     password: "",
+    password_confirmation: "",
   };
 
   // upon successful sign-in, user is directed to wineListings
@@ -17,12 +21,16 @@ function LoginForm() {
 
   // upon successful sign-in, user is directed to wineListings
   const handleSubmit = (e) => {
-    dispatch({
-      type: "setLoggedInUser",
-      data: formData.email,
+    e.preventDefault();
+    signUp(formData).then((user) => {
+      // may need to change formData.email to formData.username
+      dispatch({
+        type: "setLoggedInUser",
+        // data: formData.email,
+        data: user.email,
+      });
     });
     setFormData(initialFormData);
-    e.preventDefault();
     navigate("/wineListings");
   };
 
@@ -35,8 +43,18 @@ function LoginForm() {
 
   return (
     <>
-      <h2>Login</h2>
-      <Form onSubmit={handleSubmit}>
+      <h2>Sign Up With The GrapeVine</h2>
+      <Form onSubmit={handleSubmit} prefixes={{ btn: "my-btn" }}>
+        <Form.Group className="m-3" controlId="username">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            value={formData.username}
+            onChange={handleFormData}
+          />
+        </Form.Group>
         <Form.Group className="m-3" controlId="email">
           <Form.Label>Email Address:</Form.Label>
           <Form.Control
@@ -47,7 +65,6 @@ function LoginForm() {
             onChange={handleFormData}
           />
         </Form.Group>
-
         <Form.Group className="m-3" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -58,13 +75,22 @@ function LoginForm() {
             onChange={handleFormData}
           />
         </Form.Group>
+        <Form.Group className="m-3" controlId="password_confirmation">
+          <Form.Label>Password Confirmation</Form.Label>
+          <Form.Control
+            type="password"
+            name="password_confirmation"
+            placeholder="Password"
+            value={formData.password_confirmation}
+            onChange={handleFormData}
+          />
+        </Form.Group>
         <Button className="m-3" variant="primary" type="submit">
-          Login
+          Sign up
         </Button>
       </Form>
-      <Link to="/signup">Wine not signup?</Link>
     </>
   );
 }
 
-export default LoginForm;
+export default SignUpForm;
