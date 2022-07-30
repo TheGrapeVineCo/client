@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const wineAPI = axios.create({
+const grapeVineAPI = axios.create({
     baseURL: 'http://localhost:4000'
 })
 
-export default wineAPI
+export default grapeVineAPI
