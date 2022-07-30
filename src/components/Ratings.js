@@ -1,7 +1,7 @@
 const Ratings = () => {
   return (
     <>
-      <h1>Wine Ratings Data Will Go Here</h1>
+      <h2>Wine Ratings Data Coming Soon...</h2>
     </>
   );
 };

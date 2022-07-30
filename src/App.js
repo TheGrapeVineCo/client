@@ -17,6 +17,7 @@ import About from "./components/About";
 import NotFound from "./components/NotFound";
 import { reducer } from "./utils/reducer";
 import { StateContext } from "./utils/stateContext";
+import SignUpForm from "./components/SignUpForm";
 
 function App() {
   // defines initial state
@@ -56,6 +57,7 @@ function App() {
             <Route path="wineListings" element={<WineListings />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<LoginForm />} />
+            <Route path="signup" element={<SignUpForm />} />
             <Route path="ratings" element={<Ratings />} />
             {/* Need to include logic for only admin to have access to NewWineForm */}
             <Route path="newListing" element={<NewWineForm />} />
