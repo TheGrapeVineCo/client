@@ -18,6 +18,7 @@ import NotFound from "./components/NotFound";
 import { reducer } from "./utils/reducer";
 import { StateContext } from "./utils/stateContext";
 import SignUpForm from "./components/SignUpForm";
+import { getWineListings } from './services/wineServices';
 
 function App() {
   // defines initial state
@@ -32,11 +33,18 @@ function App() {
 
   // loads initialWineListings and initialCommentList in componentDidMount
   useEffect(() => {
+    getWineListings()
+    .then(wineListings => {
+      dispatch({
+        type: "setWineListings",
+        data: wineListings
+      })
+    })
     // fetch
-    dispatch({
-      type: "setWineListings",
-      data: initialWineListings,
-    });
+    // dispatch({
+    //   type: "setWineListings",
+    //   data: initialWineListings,
+    // });
     dispatch({
       type: "setAllComments",
       data: initialCommentList,
