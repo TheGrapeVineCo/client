@@ -5,8 +5,6 @@ import LoginForm from "./components/LoginForm";
 import WineListings from "./components/WineListings";
 import NewWineForm from "./components/NewWineForm";
 import Ratings from "./components/Ratings";
-import initialWineListings from "./data/wine-listings.json";
-import initialCommentList from "./data/comments.json";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -18,7 +16,8 @@ import NotFound from "./components/NotFound";
 import { reducer } from "./utils/reducer";
 import { StateContext } from "./utils/stateContext";
 import SignUpForm from "./components/SignUpForm";
-import { getWineListings } from './services/wineServices';
+import { getWineListings } from "./services/wineServices";
+import { getComments } from "./services/commentServices";
 
 function App() {
   // defines initial state
@@ -31,24 +30,32 @@ function App() {
   // returns an array with 2 elements: store (initial state) & dispatch to handle state
   const [store, dispatch] = useReducer(reducer, initialState);
 
-  // loads initialWineListings and initialCommentList in componentDidMount
+  // loads initialCommentList in componentDidMount
   useEffect(() => {
-    getWineListings()
-    .then(wineListings => {
+    getComments().then((commentsList) => {
+      dispatch({
+        type: "setAllComments",
+        data: commentsList,
+      });
+    });
+    // dispatch({
+    //   type: "setAllComments",
+    //   data: initialCommentList,
+    // });
+  }, []);
+
+  // loads initialWineList in componentDidMount
+  useEffect(() => {
+    getWineListings().then((wineListings) => {
       dispatch({
         type: "setWineListings",
-        data: wineListings
-      })
-    })
-    // fetch
+        data: wineListings,
+      });
+    });
     // dispatch({
     //   type: "setWineListings",
     //   data: initialWineListings,
     // });
-    dispatch({
-      type: "setAllComments",
-      data: initialCommentList,
-    });
   }, []);
 
   return (

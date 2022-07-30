@@ -10,8 +10,8 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
   const { loggedInUser } = store;
   // sets initial FormData fields to empty for newCommentForm
   const initialFormData = {
-    text: "",
-    user: loggedInUser,
+    user_comment: "",
+    user_id: loggedInUser,
     wine_listing_id: listing.id,
   };
   // provides state to text field in newCommentForm
@@ -27,13 +27,14 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Need to review validation so it notifies user that empty string cannot be posted
-    if (formData.text === "") {
+    if (formData.user_comment === "") {
     } else {
       setFormData({
         ...formData,
         // not meant to render in UI - for BE purposes
         id: "REPLACE THIS WITH ID FROM THE BE",
       });
+      console.log(formData);
       clearFormData();
       dispatch({
         type: "addComment",
@@ -67,12 +68,12 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
             {/* <Form.Label>✍️</Form.Label> */}
             <Form.Control
               type="text"
-              id="text"
-              name="text"
+              id="user_comment"
+              name="user_comment"
               as="textarea"
               rows={2}
               placeholder="What are your thoughts on this wine..."
-              value={formData.text}
+              value={formData.user_comment}
               onChange={handleFormData}
             />
           </Form.Group>
