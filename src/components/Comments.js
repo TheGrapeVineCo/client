@@ -6,8 +6,8 @@ const Comments = ({ commentList }) => {
       {/* for each comment made, render the text and user name */}
       {commentList.map((comment) => (
         <>
-          <p>{comment.text}</p>
-          <p>{comment.user}</p>
+          <p>{comment.user_comment}</p>
+          <p>{comment.user_id}</p>
         </>
       ))}
     </>

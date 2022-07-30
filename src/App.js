@@ -18,6 +18,7 @@ import About from "./components/About";
 import NotFound from "./components/NotFound";
 import { reducer } from "./utils/reducer";
 import { StateContext } from "./utils/stateContext";
+import axios from "axios";
 
 function App() {
   // defines initial state
@@ -67,15 +68,54 @@ function App() {
 
   // loads initialWineListings and initialCommentList in componentDidMount
   useEffect(() => {
-    // fetch
-    dispatch({
-      type: "setWineListings",
-      data: initialWineListings,
+    axios.get("http://localhost:4000/wine_listings").then((response) => {
+      console.log(response);
+      dispatch({
+        type: "setWineListings",
+        data: response.data,
+      });
+      // dispatch({
+      //   type: "setAllComments",
+      //   data: initialCommentList,
+      // });
     });
-    dispatch({
-      type: "setAllComments",
-      data: initialCommentList,
+    // fetch("http://localhost:4000/wine_listings")
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+    // dispatch({
+    //   type: "setWineListings",
+    //   data: initialWineListings,
+    // });
+    // dispatch({
+    //   type: "setAllComments",
+    //   data: initialCommentList,
+    // });
+  }, []);
+
+  // loads initialWineListings and initialCommentList in componentDidMount
+  useEffect(() => {
+    axios.get("http://localhost:4000/comments").then((response) => {
+      console.log(response);
+      // dispatch({
+      //   type: "setWineListings",
+      //   data: response.data,
+      // });
+      dispatch({
+        type: "setAllComments",
+        data: response.data,
+      });
     });
+    // fetch("http://localhost:4000/wine_listings")
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+    // dispatch({
+    //   type: "setWineListings",
+    //   data: initialWineListings,
+    // });
+    // dispatch({
+    //   type: "setAllComments",
+    //   data: initialCommentList,
+    // });
   }, []);
 
   return (
