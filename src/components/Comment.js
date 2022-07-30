@@ -4,8 +4,8 @@ import React from "react";
 const Comment = ({ commentList }) => {
   return (
     <>
-      <p>{commentList.text}</p>
-      <p>{commentList.user}</p>
+      <p>{commentList.user_comment}</p>
+      {/* <p>{commentList.user_id}</p> */}
     </>
   );
 };
