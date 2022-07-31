@@ -3,10 +3,11 @@ import React from "react";
 // Renders one comment from 'Comments' component
 const Comment = ({ comment }) => {
   return (
-    <div>
-      <p>{comment.user_comment}</p>
-      <p>{comment.user_id}</p>
-    </div>
+    <>
+      <p>{comment.comment}</p>
+      <p>{comment.updated}</p>
+      <p>{comment.username}</p>
+    </>
   );
 };
 
