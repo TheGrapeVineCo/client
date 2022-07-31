@@ -2,7 +2,7 @@ import grapeVineAPI from "../config/api";
 
 export async function getComments() {
   const response = await grapeVineAPI.get("/comments");
-  console.log(response.data);
+  //   console.log(response.data);
   return response.data;
 }
 
