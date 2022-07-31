@@ -1,10 +1,12 @@
 import React from "react";
-// import { useGlobalState } from "../utils/stateContext";
+import { useGlobalState } from "../utils/stateContext";
+import Button from "react-bootstrap/Button";
+
 // Iterates through all comments, taking data as required
 const Comments = ({ commentList }) => {
-  // const { store } = useGlobalState();
+  const { store } = useGlobalState();
 
-  // const { loggedInUser } = store;
+  const { loggedInUser } = store;
 
   return (
     <>
@@ -14,6 +16,15 @@ const Comments = ({ commentList }) => {
         <>
           <p>{comment.user_comment}</p>
           <p>{comment.user_id}</p>
+
+          {loggedInUser === comment.user_id && (
+            // <Button onClick={""}>Delete Message</Button>
+            <Button>Delete Message</Button>
+          )}
+          {loggedInUser === comment.user_id && (
+            // <Button onClick={""}>Edit Message</Button>
+            <Button>Edit Message</Button>
+          )}
         </>
       ))}
     </>
