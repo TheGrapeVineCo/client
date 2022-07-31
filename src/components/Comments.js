@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalState } from "../utils/stateContext";
 import Button from "react-bootstrap/Button";
+import Comment from "./Comment";
 
 // Iterates through all comments, taking data as required
 const Comments = ({ commentList }) => {
@@ -10,13 +11,11 @@ const Comments = ({ commentList }) => {
 
   return (
     <>
-      <h1>User Comments</h1>
+      <h4>User Comments</h4>
       {/* for each comment made, render the text and user name */}
       {commentList.map((comment) => (
         <>
-          <p>{comment.user_comment}</p>
-          <p>{comment.user_id}</p>
-
+          <Comment key={comment.id} comment={comment} />
           {loggedInUser === comment.user_id && (
             // <Button onClick={""}>Delete Message</Button>
             <Button>Delete Message</Button>

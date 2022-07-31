@@ -1,11 +1,11 @@
 import React from "react";
 
 // Renders one comment from 'Comments' component
-const Comment = ({ commentList }) => {
+const Comment = ({ comment }) => {
   return (
     <>
-      <p>{commentList.user_comment}</p>
-      <p>{commentList.user_id}</p>
+      <p>{comment.user_comment}</p>
+      <p>{comment.user_id}</p>
     </>
   );
 };
