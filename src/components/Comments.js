@@ -29,12 +29,16 @@ const Comments = ({ commentList }) => {
         <div key={comment.id}>
           <Comment comment={comment} />
           {loggedInUser === comment.user_id && (
-            // <Button onClick={""}>Delete Message</Button>
-            <Button>Delete Message</Button>
+            // <Button onClick={""}>Edit Message</Button>
+            <Button variant="link" className="custom-btn">
+              Edit Message
+            </Button>
           )}
           {loggedInUser === comment.user_id && (
-            // <Button onClick={""}>Edit Message</Button>
-            <Button>Edit Message</Button>
+            // <Button onClick={""}>Delete Message</Button>
+            <Button variant="link" className="custom-btn-delete">
+              Delete Message
+            </Button>
           )}
         </div>
       ))}

@@ -31,12 +31,16 @@ const WineListing = ({ listing, commentList }) => {
         <Card.Text>{listing.category}</Card.Text>
         <Card.Text>{listing.country}</Card.Text>
         <Card.Text>{listing.region}</Card.Text>
-        <Card.Text>{listing.description}</Card.Text>
+        <Card.Text className="desc">{listing.description}</Card.Text>
 
         {/* Coerce commentList length to boolean value to render button */}
         {!!commentList.length && (
           <>
-            <Button variant="link" onClick={handleComments}>
+            <Button
+              variant="link"
+              onClick={handleComments}
+              className="custom-btn"
+            >
               {showComments ? `Hide` : `View`} Comments...
             </Button>
             {showComments && <Comments commentList={commentList} />}
@@ -45,7 +49,7 @@ const WineListing = ({ listing, commentList }) => {
 
         {/* Only render comments link if user logged in */}
         {loggedInUser && (
-          <Button variant="primary" onClick={handleShow}>
+          <Button variant="link" onClick={handleShow} className="custom-btn">
             Add Comment
           </Button>
         )}

@@ -2,11 +2,14 @@ import React from "react";
 
 // Renders one comment from 'Comments' component
 const Comment = ({ comment }) => {
+  // const createdAt = new Date(comment.updated);
+  // const createdDate = createdAt.toLocaleDateString("en-AU");
+  console.log(comment);
   return (
     <>
-      <p>{comment.comment}</p>
-      <p>{comment.updated}</p>
-      <p>{comment.username}</p>
+      <p className="comm-text">{comment.comment}</p>
+      <p className="comm-detail">{comment.username}</p>
+      <p className="comm-detail">{comment.updated}</p>
     </>
   );
 };
