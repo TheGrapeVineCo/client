@@ -23,33 +23,20 @@ const Navigation = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg" className="nav-font">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/wineListings">
+        <Navbar.Brand href="#" className="nav-title">
           The GrapeVine
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav
-            className="me-auto"
-            // style={{ maxHeight: "100px" }}
-            // navbarScroll
-          >
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          <Nav className="justify-content-end flex-grow-1 pe-3">
             <Nav.Link as={Link} to="/wineListings">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="http:www.w3.org/2000/svg"
                 width="25"
                 height="25"
-                fill="currentColor"
+                fill="#000000"
                 className="bi bi-house-fill"
                 viewBox="0 0 16 16"
               >
@@ -65,10 +52,10 @@ const Navigation = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="/ratings">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="http:www.w3.org/2000/svg"
                 width="25"
                 height="25"
-                fill="currentColor"
+                fill="#000000"
                 className="bi bi-award-fill"
                 viewBox="0 0 16 16"
               >
@@ -82,7 +69,7 @@ const Navigation = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
                   height="25"
-                  fill="currentColor"
+                  fill="#000000"
                   className="bi bi-person-circle"
                   viewBox="0 0 16 16"
                 >
@@ -138,6 +125,15 @@ const Navigation = () => {
               )}
             </NavDropdown>
           </Nav>
+          <Form className="d-flex ">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button className=" btn-default">Search</Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
