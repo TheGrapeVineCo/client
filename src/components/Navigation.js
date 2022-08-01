@@ -24,20 +24,20 @@ const Navigation = () => {
 
   return (
     <Navbar expand="lg" className="nav-font">
-      <Container fluid>
-        <Navbar.Brand href="#" className="nav-title">
+      <Container fluid className="nav-bg">
+        <Navbar.Brand href="#" className="nav-bg nav-title">
           The GrapeVine
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Nav className="justify-content-end flex-grow-1 pe-3">
-            <Nav.Link as={Link} to="/wineListings">
+          <Nav className="nav-bg justify-content-end flex-grow-1 pe-3">
+            <Nav.Link as={Link} to="/wineListings" className="nav-bg">
               <svg
                 xmlns="http:www.w3.org/2000/svg"
                 width="25"
                 height="25"
                 fill="#000000"
-                className="bi bi-house-fill"
+                className="nav-bg bi bi-house-fill"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -50,13 +50,13 @@ const Navigation = () => {
                 />
               </svg>
             </Nav.Link>
-            <Nav.Link as={Link} to="/ratings">
+            <Nav.Link as={Link} to="/ratings" className="nav-bg">
               <svg
                 xmlns="http:www.w3.org/2000/svg"
                 width="25"
                 height="25"
                 fill="#000000"
-                className="bi bi-award-fill"
+                className="nav-bg bi bi-award-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z" />
@@ -64,13 +64,14 @@ const Navigation = () => {
               </svg>
             </Nav.Link>
             <NavDropdown
+              className="nav-bg"
               title={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
                   height="25"
                   fill="#000000"
-                  className="bi bi-person-circle"
+                  className="nav-bg bi bi-person-circle"
                   viewBox="0 0 16 16"
                 >
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -85,16 +86,21 @@ const Navigation = () => {
               {loggedInUser ? (
                 <>
                   {/* Need to include logic for only admin to have access to NewWineForm */}
-                  <NavDropdown.Item as={Link} to="/newListing">
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/newListing"
+                    className="nav-bg"
+                  >
                     Create New Listing
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/about">
+                  <NavDropdown.Item as={Link} to="/about" className="nav-bg">
                     About
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/myWines">
+                  <NavDropdown.Item as={Link} to="/myWines" className="nav-bg">
                     My Wines
                   </NavDropdown.Item>
                   <NavDropdown.Item
+                    className="nav-bg"
                     as={Link}
                     to="/wineListings"
                     onClick={logout}
@@ -102,37 +108,37 @@ const Navigation = () => {
                     Logout
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/contact">
+                  <NavDropdown.Item as={Link} to="/contact" className="nav-bg">
                     Contact Us
                   </NavDropdown.Item>
                 </>
               ) : (
                 <>
-                  <NavDropdown.Item as={Link} to="/about">
+                  <NavDropdown.Item as={Link} to="/about" className="nav-bg">
                     About
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/login">
+                  <NavDropdown.Item as={Link} to="/login" className="nav-bg">
                     Login
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/signup">
+                  <NavDropdown.Item as={Link} to="/signup" className="nav-bg">
                     Sign-up
                   </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/contact">
+                  <NavDropdown.Divider className="nav-bg" />
+                  <NavDropdown.Item as={Link} to="/contact" className="nav-bg">
                     Contact Us
                   </NavDropdown.Item>
                 </>
               )}
             </NavDropdown>
           </Nav>
-          <Form className="d-flex ">
+          <Form className="d-flex nav-bg">
             <Form.Control
               type="search"
               placeholder="Search"
-              className="me-2"
+              className="nav-bg me-2"
               aria-label="Search"
             />
-            <Button className=" btn-default">Search</Button>
+            <Button className="btn-default">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

@@ -2,12 +2,16 @@
 
 * {
   font-family: "Assistant", sans-serif;
+  font-weight: 200;
   color: #000000;
+}
+// Navbar Styling
+.nav-bar {
+  background-color: #beb7a9 !important;
 }
 .nav-font {
   font-family: "Assistant", sans-serif;
-  background-color: #beb7a9;
-
+  background-color: #beb7a9 !important;
   .nav-title {
     font-family: "Belleza", sans-serif;
     font-size: 2em;
@@ -43,6 +47,19 @@
     -webkit-appearance: none;
     box-shadow: none !important;
     border-color: none !important;
+  }
+}
+
+// Wine Listings styling
+.card-body {
+  margin: 1em;
+  border-color: none !important;
+  outline: none;
+  box-shadow: none;
+  background-color: #beb7a9 !important;
+  .card-title,
+  .card-text {
+    background-color: #beb7a9 !important;
   }
 }
 
