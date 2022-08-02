@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalState } from "../utils/stateContext";
+import { logIn } from "../services/authServices";
+
 function LoginForm() {
   const { dispatch } = useGlobalState();
   const navigate = useNavigate();
@@ -16,13 +18,16 @@ function LoginForm() {
   const [formData, setFormData] = useState(initialFormData);
 
   // upon successful sign-in, user is directed to wineListings
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await logIn(formData);
+    console.log(response);
+    // if API works, run dispatch
     dispatch({
       type: "setLoggedInUser",
       data: formData.email,
     });
     setFormData(initialFormData);
-    e.preventDefault();
     navigate("/wineListings");
   };
 
@@ -58,7 +63,7 @@ function LoginForm() {
             onChange={handleFormData}
           />
         </Form.Group>
-        <Button className="m-3" variant="primary" type="submit">
+        <Button className="m-3" variant="primary" type="submit" value="post">
           Login
         </Button>
       </Form>

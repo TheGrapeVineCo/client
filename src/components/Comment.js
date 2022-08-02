@@ -13,7 +13,7 @@ const Comment = ({ comment }) => {
 
   const deleteComment = (e) => {
     e.preventDefault();
-    console.log(comment.id);
+    console.log(comment);
   };
 
   return (

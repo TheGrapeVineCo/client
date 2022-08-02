@@ -7,7 +7,10 @@ export async function getComments() {
 }
 
 export async function createComment(data) {
-  const response = await grapeVineAPI.post("/comments", data);
+  const payload = { comment: { ...data } };
+  console.log(payload);
+  const response = await grapeVineAPI.post("/comments", payload);
+  console.log(response);
   return response.data;
 }
 
