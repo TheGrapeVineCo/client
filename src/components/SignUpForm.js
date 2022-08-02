@@ -24,11 +24,11 @@ function SignUpForm() {
     e.preventDefault();
 
     console.log("You clicked Sign Up")
-    console.log(formData)
+    // console.log(formData)
 
     signUp(formData)
     .then((user) => {
-      sessionStorage.setItem("username",  user.username)
+      sessionStorage.setItem("username", user.username)
       sessionStorage.setItem("token", user.jwt)
       // may need to change formData.email to formData.username
       dispatch({

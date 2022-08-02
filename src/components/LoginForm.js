@@ -3,13 +3,15 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalState } from "../utils/stateContext";
+import { login } from "../services/authServices";
+
 function LoginForm() {
   const { dispatch } = useGlobalState();
   const navigate = useNavigate();
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
-    password: "",
+    password: ""
   };
 
   // upon successful sign-in, user is directed to wineListings
@@ -17,14 +19,38 @@ function LoginForm() {
 
   // upon successful sign-in, user is directed to wineListings
   const handleSubmit = (e) => {
-    dispatch({
-      type: "setLoggedInUser",
-      data: formData.email,
-    });
-    setFormData(initialFormData);
     e.preventDefault();
-    navigate("/wineListings");
+
+    login(formData)
+    .then((user) => {
+      sessionStorage.setItem("username", user.username)
+      sessionStorage.setItem("token", user.jwt)
+      // may need to change formData.email to formData.username
+      dispatch({
+        type: "setLoggedInUser",
+        // data: formData.email,
+        data: user.username
+      });
+
+      // dispatch({
+      //   type: "setToken",
+      //   data: user.jwt
+      // })
+      
+      setFormData(initialFormData);
+      navigate("/wineListings");
+    })
+    .catch(e => {console.log(e)})
   };
+
+    // dispatch({
+    //   type: "setLoggedInUser",
+    //   data: formData.email,
+    // });
+    // setFormData(initialFormData);
+    
+    // navigate("/wineListings");
+  // };
 
   const handleFormData = (e) => {
     setFormData({

@@ -9,3 +9,12 @@ export async function signUp(data) {
 
   return response.data;
 }
+
+export async function login(data) {
+  // data needs to be stored inside user: as devise gem from Rails requires to data its data in this way
+  const data_for_devise = {user: data}
+  const response = await grapeVineAPI.post("api/login", data_for_devise);
+  console.log(response.data);
+
+  return response.data;
+}
