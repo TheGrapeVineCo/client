@@ -25,7 +25,7 @@ const Navigation = () => {
   return (
     <Navbar expand="lg" className="nav-font">
       <Container fluid className="nav-bg">
-        <Navbar.Brand href="#" className="nav-bg nav-title">
+        <Navbar.Brand href="/" className="nav-bg nav-title">
           The GrapeVine
         </Navbar.Brand>
         <Navbar.Toggle />
