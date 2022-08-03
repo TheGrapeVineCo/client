@@ -81,7 +81,7 @@ const Navigation = () => {
                   />
                 </svg>
               }
-              id="basic-navbar-nav"
+              id="basic-navbar-nav el-show"
             >
               {loggedInUser ? (
                 <>
