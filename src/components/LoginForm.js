@@ -21,7 +21,7 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    login(formData)
+    logIn(formData)
     .then((user) => {
       sessionStorage.setItem("username", user.username)
       sessionStorage.setItem("token", user.jwt)
