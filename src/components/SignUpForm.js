@@ -4,10 +4,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../services/authServices";
-import { useGlobalState } from "../utils/stateContext";
+// import { useGlobalState } from "../utils/stateContext";
 
 function SignUpForm() {
-  const { dispatch } = useGlobalState();
+  // const { dispatch } = useGlobalState();
   const navigate = useNavigate();
   // creates initial form data as clean fields
   const initialFormData = {
@@ -29,18 +29,20 @@ function SignUpForm() {
 
     signUp(formData)
     .then((user) => {
-      sessionStorage.setItem("username", user.username)
-      sessionStorage.setItem("token", user.jwt)
+
+      // sessionStorage.setItem("username", user.username)
+      // sessionStorage.setItem("token", user.jwt)
+      
       // may need to change formData.email to formData.username
-      dispatch({
-        type: "setLoggedInUser",
-        // data: formData.email,
-        data: user.username
-      });
-      dispatch({
-        type: "setToken",
-        data: user.jwt
-      })
+      // dispatch({
+      //   type: "setLoggedInUser",
+      //   // data: formData.email,
+      //   data: user.username
+      // });
+      // dispatch({
+      //   type: "setToken",
+      //   data: user.jwt
+      // })
       setFormData(initialFormData);
       navigate("/wineListings");
     })

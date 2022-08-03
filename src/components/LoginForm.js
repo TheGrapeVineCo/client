@@ -2,11 +2,11 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalState } from "../utils/stateContext";
+// import { useGlobalState } from "../utils/stateContext";
 import { logIn } from "../services/authServices";
 
 function LoginForm() {
-  const { dispatch } = useGlobalState();
+  // const { dispatch } = useGlobalState();
   const navigate = useNavigate();
   // creates initial form data as clean fields
   const initialFormData = {
@@ -22,20 +22,24 @@ function LoginForm() {
     e.preventDefault();
 
     logIn(formData)
-    .then((user) => {
-      sessionStorage.setItem("username", user.username)
-      sessionStorage.setItem("token", user.jwt)
-      // may need to change formData.email to formData.username
-      dispatch({
-        type: "setLoggedInUser",
-        // data: formData.email,
-        data: user.username
-      });
+    .then((data) => {
+      console.log("hello" + JSON.stringify(data) )
+      sessionStorage.setItem("token", JSON.stringify(data));
 
-      dispatch({
-        type: "setToken",
-        data: user.jwt
-      });
+      // sessionStorage.setItem("username", user.username)
+      // sessionStorage.setItem("token", user.jwt)
+      // // may need to change formData.email to formData.username
+
+      // dispatch({
+      //   type: "setLoggedInUser",
+      //   // data: formData.email,
+      //   data: user.username
+      // });
+
+      // dispatch({
+      //   type: "setToken",
+      //   data: data.jwt
+      // });
       
       setFormData(initialFormData);
       navigate("/wineListings");
