@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Figure, Image, Card } from "react-bootstrap";
+import { Image, Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../services/authServices";
 import { useGlobalState } from "../utils/stateContext";
-// import "../assets/signup.jpg";
 
 function SignUpForm() {
   const { dispatch } = useGlobalState();
@@ -46,19 +45,12 @@ function SignUpForm() {
   return (
     <>
       <h2 className="page-title">Sign Up With The GrapeVine 🍇</h2>
-      {/* <Figure> */}
-      {/* <Figure.Image
-          src="../assets/micheile-dot-com-j4hsN4l3BM0-unsplash.jpg"
-          alt="Wine"
-        />
-      </Figure> */}
       <Card className="signup-specs">
         <Image
-          src="assets/signup.jpg"
-          width={380}
-          height={580}
+          src="assets/alternate-wine.jpg"
+          height={480}
           rounded
-          className=".d-sm-none"
+          className="d-none d-sm-block"
         />
         <Form
           onSubmit={handleSubmit}

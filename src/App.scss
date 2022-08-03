@@ -133,16 +133,23 @@ label:focus,
     font-size: 1.25rem !important;
     border-radius: 0.5rem !important;
   }
+  .signup-specs {
+    border: none !important;
+  }
 }
 
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 600px) {
   .input-form {
-    width: 50%;
+    width: 35%;
     justify-content: center !important;
     align-items: center !important;
   }
   .signup-specs {
     flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center;
+    border: none !important;
+    margin-top: 2em !important;
   }
 }
 

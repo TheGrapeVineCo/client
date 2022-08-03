@@ -40,10 +40,10 @@ function LoginForm() {
 
   return (
     <>
-      <h2>Login</h2>
+      <h2 className="page-title">Login</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="m-3" controlId="email">
-          <Form.Label>Email Address:</Form.Label>
+          <Form.Label className="text-detail">Email Address:</Form.Label>
           <Form.Control
             type="email"
             name="email"
@@ -54,7 +54,7 @@ function LoginForm() {
         </Form.Group>
 
         <Form.Group className="m-3" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="text-detail">Password</Form.Label>
           <Form.Control
             type="password"
             name="password"
@@ -63,11 +63,20 @@ function LoginForm() {
             onChange={handleFormData}
           />
         </Form.Group>
-        <Button className="m-3" variant="primary" type="submit" value="post">
-          Login
-        </Button>
+        <Form.Group className="button-form">
+          <Button
+            className="m-3 btn-default button-mob"
+            variant="primary"
+            type="submit"
+            value="post"
+          >
+            Login
+          </Button>
+        </Form.Group>
       </Form>
-      <Link to="/signup">Wine not signup?</Link>
+      <Link to="/signup" className="m-3 custom-link">
+        Wine not signup?
+      </Link>
     </>
   );
 }
