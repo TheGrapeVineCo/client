@@ -153,4 +153,45 @@ label:focus,
   }
 }
 
+// Login Page
+@media only screen and (max-width: 600px) {
+  .signup-link {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+.custom-link {
+  color: #898661 !important;
+  background: none !important;
+}
+
+// About page
+
+@media only screen and (min-width: 820px) {
+  .about {
+    margin: 1em 20em;
+    padding: 1em;
+    border: none !important;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .about {
+    margin: 1em 10em;
+    padding: 1em;
+    border: none !important;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .about {
+    margin: 1em 2em;
+    padding: 1em;
+    border: none !important;
+    text-align: justify;
+  }
+}
 @import "~bootstrap/scss/bootstrap";
