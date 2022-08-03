@@ -23,17 +23,30 @@ function SignUpForm() {
   // upon successful sign-in, user is directed to wineListings
   const handleSubmit = (e) => {
     e.preventDefault();
-    signUp(formData).then((user) => {
+
+    console.log("You clicked Sign Up")
+    // console.log(formData)
+
+    signUp(formData)
+    .then((user) => {
+      sessionStorage.setItem("username", user.username)
+      sessionStorage.setItem("token", user.jwt)
       // may need to change formData.email to formData.username
       dispatch({
         type: "setLoggedInUser",
         // data: formData.email,
-        data: user.email,
+        data: user.username
       });
-    });
-    setFormData(initialFormData);
-    navigate("/wineListings");
+      dispatch({
+        type: "setToken",
+        data: user.jwt
+      })
+      setFormData(initialFormData);
+      navigate("/wineListings");
+    })
+    .catch(e => {console.log(e)})
   };
+  
 
   const handleFormData = (e) => {
     setFormData({
