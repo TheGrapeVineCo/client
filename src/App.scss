@@ -1,0 +1,156 @@
+//  Overwrites theme variables to add custom styling
+
+* {
+  font-family: "Assistant", sans-serif;
+  font-weight: 200;
+  color: #000000;
+}
+// Navbar Styling
+.nav-bar {
+  background-color: #beb7a9 !important;
+}
+
+.show,
+a:hover {
+  background-color: #beb7a9 !important;
+  border: none !important;
+}
+.nav-font {
+  font-family: "Assistant", sans-serif;
+  background-color: #beb7a9 !important;
+  .nav-title {
+    font-family: "Belleza", sans-serif;
+    font-size: 2em;
+  }
+}
+.btn-default {
+  background-color: #ef5328 !important;
+  color: #ffffff;
+  border-color: #ef5328 !important;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-color: #ef5328;
+  color: #ffffff;
+  border-color: #ef5328;
+}
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+form-control:focus,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  border-color: none !important;
+}
+
+// Wine Listings styling
+.card-body {
+  margin: 1em;
+  border-color: none !important;
+  outline: none;
+  box-shadow: none;
+  background-color: #ffffff !important;
+  .card-title,
+  .card-text {
+    background-color: #ffffff !important;
+  }
+  .desc {
+    width: 50vw;
+    text-align: justify;
+  }
+}
+
+// Comment / Title styling
+.text-detail {
+  display: inline-block;
+  margin-right: 1em;
+  font-weight: bold;
+}
+
+.page-title {
+  // font-family: "Belleza", sans-serif;
+  text-align: center;
+  margin-top: 0.5em;
+}
+// Comment Styling
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active,
+.btn-link.active,
+.open .dropdown-toggle.btn-link {
+  background-color: #ef5328;
+  color: #ffffff;
+  border-color: #ef5328;
+}
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+form-control:focus,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  border-color: none !important;
+}
+
+.custom-btn {
+  color: #898661 !important;
+}
+
+.custom-btn-delete {
+  color: #ef5328 !important;
+}
+
+// Signup page
+@media only screen and (max-width: 600px) {
+  .button-form {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .button-mob {
+    padding: 0.5rem 1rem !important;
+    font-size: 1.25rem !important;
+    border-radius: 0.5rem !important;
+  }
+  .signup-specs {
+    border: none !important;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .input-form {
+    width: 35%;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .signup-specs {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center;
+    border: none !important;
+    margin-top: 2em !important;
+  }
+}
+
+@import "~bootstrap/scss/bootstrap";

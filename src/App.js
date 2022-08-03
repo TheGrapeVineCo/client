@@ -32,12 +32,14 @@ function App() {
 
   // loads initialCommentList in componentDidMount
   useEffect(() => {
-    getComments().then((commentsList) => {
-      dispatch({
-        type: "setAllComments",
-        data: commentsList,
-      });
-    });
+    getComments()
+      .then((commentsList) => {
+        dispatch({
+          type: "setAllComments",
+          data: commentsList,
+        });
+      })
+      .catch((e) => console.log(e));
     // dispatch({
     //   type: "setAllComments",
     //   data: initialCommentList,

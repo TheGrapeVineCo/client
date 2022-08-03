@@ -23,20 +23,24 @@ const WineListing = ({ listing, commentList }) => {
   const handleClose = () => setShowCommentModal(false);
 
   return (
-    <Card data-testid="wineListing-element">
+    <Card data-testid="wineListing-element" className="card-body">
       <Card.Body>
-        <p>{listing.brand}</p>
-        <p>{listing.grape_variety}</p>
-        <p>{listing.year}</p>
-        <p>{listing.category}</p>
-        <p>{listing.country}</p>
-        <p>{listing.region}</p>
-        <p>{listing.description}</p>
+        <Card.Title className="fw-bold">{listing.brand}</Card.Title>
+        <Card.Text>{listing.grape_variety}</Card.Text>
+        <Card.Text>{listing.year}</Card.Text>
+        <Card.Text>{listing.category}</Card.Text>
+        <Card.Text>{listing.country}</Card.Text>
+        <Card.Text>{listing.region}</Card.Text>
+        <Card.Text className="desc">{listing.description}</Card.Text>
 
         {/* Coerce commentList length to boolean value to render button */}
         {!!commentList.length && (
           <>
-            <Button variant="link" onClick={handleComments}>
+            <Button
+              variant="link"
+              onClick={handleComments}
+              className="custom-btn"
+            >
               {showComments ? `Hide` : `View`} Comments...
             </Button>
             {showComments && <Comments commentList={commentList} />}
@@ -45,7 +49,7 @@ const WineListing = ({ listing, commentList }) => {
 
         {/* Only render comments link if user logged in */}
         {loggedInUser && (
-          <Button variant="primary" onClick={handleShow}>
+          <Button variant="link" onClick={handleShow} className="custom-btn">
             Add Comment
           </Button>
         )}

@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGlobalState } from "../utils/stateContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
-import { useState } from "react";
+import { createComment } from "../services/commentServices";
 
 const NewCommentModal = ({ show, handleClose, listing }) => {
   const { store, dispatch } = useGlobalState();
   const { loggedInUser } = store;
   // sets initial FormData fields to empty for newCommentForm
   const initialFormData = {
-    user_comment: "",
+    comment: "",
     user_id: loggedInUser,
     wine_listing_id: listing.id,
   };
@@ -24,17 +24,21 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Need to review validation so it notifies user that empty string cannot be posted
-    if (formData.user_comment === "") {
+    if (formData.comment === "") {
     } else {
+      // data not rendering due to line belows api call failing
+      const response = await createComment(formData);
+      console.log(response);
+      // need to get comment id from API response and pass on to dispatch
+      // may need to update data after this line to ensure the data matches up. Line 35 might not be required after the API call works
       setFormData({
         ...formData,
         // not meant to render in UI - for BE purposes
         id: "REPLACE THIS WITH ID FROM THE BE",
       });
-      console.log(formData);
       clearFormData();
       dispatch({
         type: "addComment",
@@ -65,15 +69,14 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
       <Form onSubmit={handleSubmit}>
         <Modal.Body>
           <Form.Group>
-            {/* <Form.Label>✍️</Form.Label> */}
             <Form.Control
               type="text"
-              id="user_comment"
-              name="user_comment"
+              id="comment"
+              name="comment"
               as="textarea"
               rows={2}
               placeholder="What are your thoughts on this wine..."
-              value={formData.user_comment}
+              value={formData.comment}
               onChange={handleFormData}
             />
           </Form.Group>
