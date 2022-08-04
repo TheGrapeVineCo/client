@@ -1,7 +1,8 @@
 import Button from "react-bootstrap/Button";
-// import Col from "react-bootstrap/Col";
+// import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-// import Row from "react-bootstrap/Row";
+import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../utils/stateContext";
@@ -64,7 +65,7 @@ function NewWineForm() {
     addNewWineListing(formData);
     clearFormData();
     // may need to change to admin dashboard
-    navigate("/wineListings");
+    navigate("/login");
   };
 
   //   clears the form data for next entry
@@ -75,158 +76,93 @@ function NewWineForm() {
   return (
     <>
       <h2 className="page-title">Create a New Wine Listing 🍷</h2>
-      <Form onSubmit={handleSubmit} className="cwl-container">
-        <Form.Group className="mb-3" controlId="brand">
-          <Form.Label className="text-detail">Brand</Form.Label>
-          <Form.Control
-            type="string"
-            placeholder="Enter wine brand"
-            value={formData.brand}
-            onChange={handleFormData}
-          />
+      <Form onSubmit={handleSubmit} className="cwl-container ">
+        <Row>
+          <Col lg={6} md={12} sm={12} xs={12}>
+            <Form.Group className="mb-3" controlId="brand">
+              <Form.Label className="text-detail">Brand</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Enter wine brand"
+                value={formData.brand}
+                onChange={handleFormData}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="grape_variety">
+              <Form.Label className="text-detail">Grape Variety</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Shiraz, Merlot, Sauvignon Blanc..."
+                value={formData.grape_variety}
+                onChange={handleFormData}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="year">
+              <Form.Label className="text-detail">Year</Form.Label>
+              <Form.Control
+                type="integer"
+                placeholder="Year"
+                value={formData.year}
+                onChange={handleFormData}
+              />
+            </Form.Group>
+          </Col>
+
+          <Col lg={6} md={12} sm={12} xs={12}>
+            <Form.Group className="mb-3" controlId="category">
+              <Form.Label className="text-detail">Category</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Red, White, Sparkling..."
+                value={formData.category}
+                onChange={handleFormData}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="country">
+              <Form.Label className="text-detail">Country</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Australia"
+                value={formData.country}
+                onChange={handleFormData}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="region">
+              <Form.Label className="text-detail">Region</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Barossa Valley, Margaret River..."
+                value={formData.region}
+                onChange={handleFormData}
+              />
+            </Form.Group>
+          </Col>
+          <Form.Group className="mb-3" controlId="description">
+            <Col lg={6} md={12} sm={12} xs={12}>
+              <Form.Label className="text-detail">Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Describe the wine..."
+                value={formData.description}
+                onChange={handleFormData}
+                className={"desc-textarea"}
+              />
+            </Col>
+          </Form.Group>
+        </Row>
+        <Form.Group className="button-form">
+          <Button
+            className="btn-default button-mob"
+            variant="primary"
+            type="submit"
+          >
+            Submit
+          </Button>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="grape_variety">
-          <Form.Label className="text-detail">Grape Variety</Form.Label>
-          <Form.Control
-            type="string"
-            placeholder="Shiraz, Merlot, Sauvignon Blanc..."
-            value={formData.grape_variety}
-            onChange={handleFormData}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="year">
-          <Form.Label className="text-detail">Year</Form.Label>
-          <Form.Control
-            type="integer"
-            placeholder="Year"
-            value={formData.year}
-            onChange={handleFormData}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="category">
-          <Form.Label className="text-detail">Category</Form.Label>
-          <Form.Control
-            type="string"
-            placeholder="Red, White, Sparkling..."
-            value={formData.category}
-            onChange={handleFormData}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="country">
-          <Form.Label className="text-detail">Country</Form.Label>
-          <Form.Control
-            type="string"
-            placeholder="Australia"
-            value={formData.country}
-            onChange={handleFormData}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="region">
-          <Form.Label className="text-detail">Region</Form.Label>
-          <Form.Control
-            type="string"
-            placeholder="Barossa Valley, Margaret River..."
-            value={formData.region}
-            onChange={handleFormData}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="description">
-          <Form.Label className="text-detail">Description</Form.Label>
-          <Form.Control
-            type="textarea"
-            rows={4}
-            placeholder="Describe the wine..."
-            value={formData.description}
-            onChange={handleFormData}
-          />
-        </Form.Group>
-        <Button className="btn-default" variant="primary" type="submit">
-          Submit
-        </Button>
       </Form>
     </>
-
-    // <Form onSubmit={handleSubmit} className="cwl-container">
-    //   <h2 className="page-title">Create a New Wine Listing 🍷</h2>
-    //   <Row className="mb-3">
-    //     <Form.Group as={Col} controlId="brand">
-    //       <Form.Label className="text-detail">Brand</Form.Label>
-    //       <Form.Control
-    //         type="string"
-    //         placeholder="Enter wine brand"
-    //         value={formData.brand}
-    //         onChange={handleFormData}
-    //       />
-    //     </Form.Group>
-
-    //     <Form.Group as={Col} controlId="grape_variety">
-    //       <Form.Label className="text-detail">Grape Variety</Form.Label>
-    //       <Form.Control
-    //         type="string"
-    //         placeholder="Shiraz, Merlot, Sauvignon Blanc..."
-    //         value={formData.grape_variety}
-    //         onChange={handleFormData}
-    //       />
-    //     </Form.Group>
-    //   </Row>
-
-    //   <Row className="mb-3">
-    //     <Form.Group as={Col} controlId="year">
-    //       <Form.Label className="text-detail">Year</Form.Label>
-    //       <Form.Control
-    //         type="integer"
-    //         placeholder="Year"
-    //         value={formData.year}
-    //         onChange={handleFormData}
-    //       />
-    //     </Form.Group>
-
-    //     <Form.Group as={Col} controlId="category">
-    //       <Form.Label className="text-detail">Category</Form.Label>
-    //       <Form.Control
-    //         type="string"
-    //         placeholder="Red, White, Sparkling..."
-    //         value={formData.category}
-    //         onChange={handleFormData}
-    //       />
-    //     </Form.Group>
-    //   </Row>
-
-    //   <Row className="mb-3">
-    //     <Form.Group as={Col} controlId="country">
-    //       <Form.Label className="text-detail">Country</Form.Label>
-    //       <Form.Control
-    //         type="string"
-    //         placeholder="Australia"
-    //         value={formData.country}
-    //         onChange={handleFormData}
-    //       />
-    //     </Form.Group>
-
-    //     <Form.Group as={Col} controlId="region">
-    //       <Form.Label className="text-detail">Region</Form.Label>
-    //       <Form.Control
-    //         type="string"
-    //         placeholder="Barossa Valley, Margaret River..."
-    //         value={formData.region}
-    //         onChange={handleFormData}
-    //       />
-    //     </Form.Group>
-    //   </Row>
-    //   <Form.Group className="mb-3" controlId="description">
-    //     <Form.Label className="text-detail">Description</Form.Label>
-    //     <Form.Control
-    //       type="text"
-    //       placeholder="Describe the wine..."
-    //       value={formData.description}
-    //       onChange={handleFormData}
-    //     />
-    //   </Form.Group>
-
-    //   <Button className="btn-default" variant="primary" type="submit">
-    //     Submit
-    //   </Button>
-    // </Form>
   );
 }
 
