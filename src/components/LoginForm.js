@@ -23,10 +23,13 @@ function LoginForm() {
 
     logIn(formData)
     .then((data) => {
-      console.log("hello" + JSON.stringify(data) )
-      sessionStorage.setItem("token", JSON.stringify(data));
-
-      // sessionStorage.setItem("username", user.username)
+      // console.log("hello" + JSON.stringify(data) )
+      sessionStorage.setItem("token", JSON.stringify(data.jwt));
+      sessionStorage.setItem("username", JSON.stringify(data.username));
+      
+      // console.log(data.email);
+      // sessionStorage.setItem("email", data.user.email)
+      
       // sessionStorage.setItem("token", user.jwt)
       // // may need to change formData.email to formData.username
 
@@ -44,18 +47,9 @@ function LoginForm() {
       setFormData(initialFormData);
       navigate("/wineListings");
     })
+    .then()
     .catch(e => {console.log(e)})
   };
-
-    // dispatch({
-    //   type: "setLoggedInUser",
-    //   data: formData.email,
-    // });
-    // setFormData(initialFormData);
-    
-    // navigate("/wineListings");
-  // };
-
   const handleFormData = (e) => {
     setFormData({
       ...formData,

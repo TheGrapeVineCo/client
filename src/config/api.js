@@ -7,7 +7,7 @@ const grapeVineAPI = axios.create({
   baseURL: "http://localhost:4000",
 
   // fetching API from Heroku
-  // baseURL: "https://grapevine-rails-api.herokuapp.com/"
+  // baseURL: "https://grapevine-rails-api.herokuapp.com/",
 
   //This worked. Request headers maintain Auth Bearer token during login sessions for wine_listings pages.
   headers: {
@@ -15,6 +15,7 @@ const grapeVineAPI = axios.create({
     }
 });
 
+export default grapeVineAPI;
 // Request interceptors for API calls
 
 // This axios interceptors.request hasn't worked in storing jwt into sessionStorage.
@@ -42,4 +43,4 @@ const grapeVineAPI = axios.create({
 //   return request
 // })
 
-export default grapeVineAPI;
+

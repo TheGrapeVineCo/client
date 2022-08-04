@@ -55,6 +55,7 @@ function SignUpForm() {
       ...formData,
       [e.target.id]: e.target.value,
     });
+    // console.log(e.target.value)
   };
 
   return (

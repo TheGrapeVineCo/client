@@ -13,10 +13,12 @@ export async function signUp(data) {
 // facilitates user login to FE/BE
 export async function logIn(data) {
   const payload = { user: { ...data } };
-  // console.log(payload);
   const response = await grapeVineAPI.post("api/login", payload);
+  // console.log(response.data);
+  const returnedPayloadUsername = response.data.user.username;
+  const returnedAuthHeader = response.headers.authorization;
+  const sessionData = { username: returnedPayloadUsername, jwt: returnedAuthHeader}
+  // console.log(response.headers);
 
-  console.log(response.headers);
-
-  return response.headers.authorization;
+  return sessionData;
 }
