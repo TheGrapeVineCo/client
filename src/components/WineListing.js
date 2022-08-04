@@ -23,15 +23,15 @@ const WineListing = ({ listing, commentList }) => {
   const handleClose = () => setShowCommentModal(false);
 
   return (
-    <Card data-testid="wineListing-element" className="card-body">
-      <Card.Body>
-        <Card.Title className="fw-bold">{listing.brand}</Card.Title>
-        <Card.Text>{listing.grape_variety}</Card.Text>
-        <Card.Text>{listing.year}</Card.Text>
-        <Card.Text>{listing.category}</Card.Text>
-        <Card.Text>{listing.country}</Card.Text>
-        <Card.Text>{listing.region}</Card.Text>
-        <Card.Text className="desc">{listing.description}</Card.Text>
+    <Card data-testid="wineListing-element" className="wl-container">
+      <Card.Body className="wl-body">
+        <Card.Title className="fw-bold wl-text">{listing.brand}</Card.Title>
+        <Card.Text className="wl-text">{listing.grape_variety}</Card.Text>
+        <Card.Text className="wl-text">{listing.year}</Card.Text>
+        <Card.Text className="wl-text">{listing.category}</Card.Text>
+        <Card.Text className="wl-text">{listing.country}</Card.Text>
+        <Card.Text className="wl-text">{listing.region}</Card.Text>
+        <Card.Text className="desc wl-text">{listing.description}</Card.Text>
 
         {/* Coerce commentList length to boolean value to render button */}
         {!!commentList.length && (
@@ -43,15 +43,18 @@ const WineListing = ({ listing, commentList }) => {
             >
               {showComments ? `Hide` : `View`} Comments...
             </Button>
+            {/* Only render comments link if user logged in */}
+            {loggedInUser && (
+              <Button
+                variant="link"
+                onClick={handleShow}
+                className="custom-btn"
+              >
+                Add Comment
+              </Button>
+            )}
             {showComments && <Comments commentList={commentList} />}
           </>
-        )}
-
-        {/* Only render comments link if user logged in */}
-        {loggedInUser && (
-          <Button variant="link" onClick={handleShow} className="custom-btn">
-            Add Comment
-          </Button>
         )}
 
         <NewCommentModal

@@ -10,7 +10,12 @@
   background-color: #beb7a9 !important;
 }
 
-.show,
+// for drop down menu color
+div.dropdown-menu.show {
+  background-color: #beb7a9 !important;
+  border: none !important;
+}
+.el-show,
 a:hover {
   background-color: #beb7a9 !important;
   border: none !important;
@@ -57,26 +62,37 @@ label:focus,
 }
 
 // Wine Listings styling
-.card-body {
+.wl-container {
   margin: 1em;
-  border-color: none !important;
+  padding: 1em;
+  background-color: #f6f0eb !important;
+  border-color: #f6f0eb !important;
   outline: none;
   box-shadow: none;
-  background-color: #ffffff !important;
   .card-title,
   .card-text {
-    background-color: #ffffff !important;
+    background-color: #f6f0eb !important;
   }
   .desc {
-    width: 50vw;
+    background-color: #f6f0eb !important;
+    width: 75vw;
     text-align: justify;
   }
 }
 
-// Comment / Title styling
+@media only screen and (min-width: 820px) {
+  .wl-container {
+    margin: 1em 5em;
+    .desc {
+      width: 70vw;
+    }
+  }
+}
+
+// Comment / Title styling / New Wine Listing
 .text-detail {
   display: inline-block;
-  margin-right: 1em;
+  margin-bottom: 0 !important;
   font-weight: bold;
 }
 
@@ -85,7 +101,12 @@ label:focus,
   text-align: center;
   margin-top: 0.5em;
 }
+
 // Comment Styling
+.comments-title {
+  text-align: center;
+  margin: 0.5em 0;
+}
 .btn-link:hover,
 .btn-link:focus,
 .btn-link:active,
@@ -116,6 +137,7 @@ label:focus,
 
 .custom-btn {
   color: #898661 !important;
+  font-weight: 500;
 }
 
 .custom-btn-delete {
@@ -150,6 +172,99 @@ label:focus,
     justify-content: center;
     border: none !important;
     margin-top: 2em !important;
+  }
+}
+
+// Login Page
+@media only screen and (max-width: 600px) {
+  .signup-link {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+.custom-link,
+.custom-link:hover {
+  color: #898661 !important;
+  background: none !important;
+  font-weight: 400;
+}
+
+// About page
+
+.about {
+  margin: 1em 2em;
+  padding: 1em;
+  border: none !important;
+  text-align: justify;
+}
+
+@media only screen and (max-width: 820px) {
+  .about {
+    margin: 1em 4em;
+    padding: 1em;
+    border: none !important;
+    text-align: justify;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .about {
+    margin: 1em 20em;
+    padding: 1em;
+    border: none !important;
+    text-align: justify;
+  }
+}
+
+// Comment Modal
+
+.modal-container-top {
+  background-color: #beb7a9;
+}
+.modal-title {
+  margin-left: 1em !important;
+  background-color: #beb7a9;
+}
+.modal-container-body {
+  background-color: #f6f0eb;
+  border: none;
+}
+
+@media only screen and (max-width: 820px) {
+  .modal-title {
+    margin-left: 4em !important;
+  }
+}
+
+@media only screen and (min-width: 820px) {
+  .modal-title {
+    margin-left: 3.5em !important;
+  }
+}
+
+// Error Page
+
+.not-found {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+// New Wine Listing
+
+.cwl-container {
+  margin: 1em;
+}
+
+@media only screen and (min-width: 995px) {
+  .cwl-container {
+    margin: 2em 8em;
+  }
+  .desc-textarea {
+    width: 98% !important;
   }
 }
 

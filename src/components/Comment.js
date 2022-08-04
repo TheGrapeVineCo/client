@@ -34,7 +34,6 @@ const Comment = ({ comment }) => {
           variant="link"
           className="custom-btn-delete"
           comment={comment}
-          id={55}
           onClick={deleteComment}
         >
           Delete Message

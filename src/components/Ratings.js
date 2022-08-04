@@ -1,7 +1,9 @@
 const Ratings = () => {
   return (
     <>
-      <h2>Wine Ratings Data Coming Soon...</h2>
+      <div className="not-found">
+        <h2>Wine Ratings Data Coming Soon...</h2>
+      </div>
     </>
   );
 };

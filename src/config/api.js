@@ -2,8 +2,8 @@ import axios from "axios";
 
 // creates connection to Heroku
 const grapeVineAPI = axios.create({
-
   // fetching API from local laptop
+  
   baseURL: "http://localhost:4000",
 
   // fetching API from Heroku

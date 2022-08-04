@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Image, Card } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +25,7 @@ function SignUpForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("You clicked Sign Up")
+    console.log("You clicked Sign Up");
     // console.log(formData)
 
     signUp(formData)
@@ -48,7 +49,6 @@ function SignUpForm() {
     })
     .catch(e => {console.log(e)})
   };
-  
 
   const handleFormData = (e) => {
     setFormData({
