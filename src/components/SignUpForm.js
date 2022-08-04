@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Image, Card } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
@@ -24,29 +25,30 @@ function SignUpForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("You clicked Sign Up")
+    console.log("You clicked Sign Up");
     // console.log(formData)
 
     signUp(formData)
-    .then((user) => {
-      sessionStorage.setItem("username", user.username)
-      sessionStorage.setItem("token", user.jwt)
-      // may need to change formData.email to formData.username
-      dispatch({
-        type: "setLoggedInUser",
-        // data: formData.email,
-        data: user.username
-      });
-      dispatch({
-        type: "setToken",
-        data: user.jwt
+      .then((user) => {
+        sessionStorage.setItem("username", user.username);
+        sessionStorage.setItem("token", user.jwt);
+        // may need to change formData.email to formData.username
+        dispatch({
+          type: "setLoggedInUser",
+          // data: formData.email,
+          data: user.username,
+        });
+        dispatch({
+          type: "setToken",
+          data: user.jwt,
+        });
+        setFormData(initialFormData);
+        navigate("/login");
       })
-      setFormData(initialFormData);
-      navigate("/wineListings");
-    })
-    .catch(e => {console.log(e)})
+      .catch((e) => {
+        console.log(e);
+      });
   };
-  
 
   const handleFormData = (e) => {
     setFormData({

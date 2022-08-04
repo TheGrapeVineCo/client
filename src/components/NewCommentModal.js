@@ -61,12 +61,12 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header closeButton className="modal-container-top">
+        <Modal.Title className="modal-title" id="contained-modal-title-vcenter">
           Share your thoughts on the 🍷
         </Modal.Title>
       </Modal.Header>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="modal-container-body">
         <Modal.Body>
           <Form.Group>
             <Form.Control
@@ -78,15 +78,17 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
               placeholder="What are your thoughts on this wine..."
               value={formData.comment}
               onChange={handleFormData}
+              className="border-0"
             />
           </Form.Group>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="border-0">
           <Button
             variant="secondary"
             type="submit"
             value="post"
             onClick={handleClose}
+            className="btn-default"
           >
             Post
           </Button>
