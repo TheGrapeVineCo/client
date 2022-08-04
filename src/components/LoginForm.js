@@ -13,7 +13,7 @@ function LoginForm() {
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
-    password: ""
+    password: "",
   };
 
   // upon successful sign-in, user is directed to wineListings
@@ -24,34 +24,36 @@ function LoginForm() {
     e.preventDefault();
 
     logIn(formData)
-    .then((user) => {
-      sessionStorage.setItem("username", user.username)
-      sessionStorage.setItem("token", user.jwt)
-      // may need to change formData.email to formData.username
-      dispatch({
-        type: "setLoggedInUser",
-        // data: formData.email,
-        data: user.username
-      });
+      .then((user) => {
+        sessionStorage.setItem("username", user.username);
+        sessionStorage.setItem("token", user.jwt);
+        // may need to change formData.email to formData.username
+        dispatch({
+          type: "setLoggedInUser",
+          // data: formData.email,
+          data: user.username,
+        });
 
-      dispatch({
-        type: "setToken",
-        data: user.jwt
+        dispatch({
+          type: "setToken",
+          data: user.jwt,
+        });
+
+        setFormData(initialFormData);
+        navigate("/wineListings");
+      })
+      .catch((e) => {
+        console.log(e);
       });
-      
-      setFormData(initialFormData);
-      navigate("/wineListings");
-    })
-    .catch(e => {console.log(e)})
   };
 
-    // dispatch({
-    //   type: "setLoggedInUser",
-    //   data: formData.email,
-    // });
-    // setFormData(initialFormData);
-    
-    // navigate("/wineListings");
+  // dispatch({
+  //   type: "setLoggedInUser",
+  //   data: formData.email,
+  // });
+  // setFormData(initialFormData);
+
+  // navigate("/wineListings");
   // };
 
   const handleFormData = (e) => {
@@ -104,9 +106,11 @@ function LoginForm() {
             </Button>
           </Form.Group>
           {/* can't get hover styling to work here - impacts other components */}
-          <Link to="/signup" className="m-3 custom-link signup-link">
-            Wine not signup?
-          </Link>
+          <div className="button-form">
+            <Link to="/signup" className="m-3 custom-link">
+              Wine not signup?
+            </Link>
+          </div>
         </Form>
       </Card>
     </>

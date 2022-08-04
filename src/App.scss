@@ -183,7 +183,8 @@ label:focus,
   }
 }
 
-.custom-link {
+.custom-link,
+.custom-link:hover {
   color: #898661 !important;
   background: none !important;
   font-weight: 400;

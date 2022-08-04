@@ -65,7 +65,7 @@ function NewWineForm() {
     addNewWineListing(formData);
     clearFormData();
     // may need to change to admin dashboard
-    navigate("/login");
+    navigate("/wineListings");
   };
 
   //   clears the form data for next entry
