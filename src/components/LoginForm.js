@@ -13,25 +13,46 @@ function LoginForm() {
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
-    password: "",
+    password: ""
   };
 
   // upon successful sign-in, user is directed to wineListings
   const [formData, setFormData] = useState(initialFormData);
 
   // upon successful sign-in, user is directed to wineListings
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const response = await logIn(formData);
-    console.log(response);
-    // if API works, run dispatch
-    dispatch({
-      type: "setLoggedInUser",
-      data: formData.email,
-    });
-    setFormData(initialFormData);
-    navigate("/wineListings");
+
+    logIn(formData)
+    .then((user) => {
+      sessionStorage.setItem("username", user.username)
+      sessionStorage.setItem("token", user.jwt)
+      // may need to change formData.email to formData.username
+      dispatch({
+        type: "setLoggedInUser",
+        // data: formData.email,
+        data: user.username
+      });
+
+      dispatch({
+        type: "setToken",
+        data: user.jwt
+      });
+      
+      setFormData(initialFormData);
+      navigate("/wineListings");
+    })
+    .catch(e => {console.log(e)})
   };
+
+    // dispatch({
+    //   type: "setLoggedInUser",
+    //   data: formData.email,
+    // });
+    // setFormData(initialFormData);
+    
+    // navigate("/wineListings");
+  // };
 
   const handleFormData = (e) => {
     setFormData({
