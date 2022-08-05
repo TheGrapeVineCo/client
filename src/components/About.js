@@ -3,7 +3,9 @@ import Card from "react-bootstrap/Card";
 const About = () => {
   return (
     <>
-      <h2 className="page-title">Who is The GrapeVine?</h2>
+      <h2 className="page-title" data-testid="about-element">
+        Who is The GrapeVine?
+      </h2>
       <Card className="about">
         <p>
           The purpose of The GrapeVine is to bring people together on a
