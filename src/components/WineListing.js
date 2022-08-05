@@ -17,21 +17,25 @@ const WineListing = ({ listing, commentList }) => {
 
   // provides state to render newCommentForm as modal
   const [showCommentModal, setShowCommentModal] = useState(false);
+
   // Opens modal for user to make new comment
   const handleShow = () => setShowCommentModal(true);
+
   // Closes modal
   const handleClose = () => setShowCommentModal(false);
 
+  const { brand, grape_variety, year, category, country, region, description } =
+    listing;
   return (
     <Card data-testid="wineListing-element" className="wl-container">
       <Card.Body className="wl-body">
-        <Card.Title className="fw-bold wl-text">{listing.brand}</Card.Title>
-        <Card.Text className="wl-text">{listing.grape_variety}</Card.Text>
-        <Card.Text className="wl-text">{listing.year}</Card.Text>
-        <Card.Text className="wl-text">{listing.category}</Card.Text>
-        <Card.Text className="wl-text">{listing.country}</Card.Text>
-        <Card.Text className="wl-text">{listing.region}</Card.Text>
-        <Card.Text className="desc wl-text">{listing.description}</Card.Text>
+        <Card.Title className="fw-bold wl-text">{brand}</Card.Title>
+        <Card.Text className="wl-text">{grape_variety}</Card.Text>
+        <Card.Text className="wl-text">{year}</Card.Text>
+        <Card.Text className="wl-text">{category}</Card.Text>
+        <Card.Text className="wl-text">{country}</Card.Text>
+        <Card.Text className="wl-text">{region}</Card.Text>
+        <Card.Text className="desc wl-text">{description}</Card.Text>
 
         {/* Coerce commentList length to boolean value to render button */}
         {!!commentList.length && (

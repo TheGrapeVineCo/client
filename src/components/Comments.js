@@ -1,14 +1,8 @@
 import React from "react";
-// import { useGlobalState, useParams } from "../utils/stateContext";
-// import Button from "react-bootstrap/Button";
 import Comment from "./Comment";
 
 // Iterates through all comments, taking data as required
 const Comments = ({ commentList }) => {
-  // const { store } = useGlobalState();
-  // const { loggedInUser } = store;
-  // const params = useParams();
-
   return (
     <>
       <h5 className="comments-title">What are your thoughts 🍷</h5>
@@ -16,18 +10,6 @@ const Comments = ({ commentList }) => {
       {commentList.map((comment) => (
         <div key={comment.id}>
           <Comment comment={comment} />
-          {/* {loggedInUser === comment.user_id && (
-            // <Button onClick={""}>Edit Message</Button>
-            <Button variant="link" className="custom-btn">
-              Edit Message
-            </Button>
-          )}
-          {loggedInUser === comment.user_id && (
-            // <Button onClick={""}>Delete Message</Button>
-            <Button variant="link" className="custom-btn-delete">
-              Delete Message
-            </Button>
-          )} */}
         </div>
       ))}
     </>

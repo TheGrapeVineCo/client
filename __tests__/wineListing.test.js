@@ -1,11 +1,10 @@
 /**
  * @jest-environment jsdom
  */
+import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import WineListing from "../src/components/WineListing";
-
-// import WineListing from "../src/components/WineListing";
 
 // test block
 describe("WineListing", () => {
@@ -58,6 +57,4 @@ describe("WineListing", () => {
     expect(screen.queryByText(commentText)).not.toBeInTheDocument();
     expect(screen.queryByText(commentUser)).not.toBeInTheDocument();
   });
-
-  // test("should add user comments to wineListing")
 });
