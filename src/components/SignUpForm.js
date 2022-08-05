@@ -45,7 +45,7 @@ function SignUpForm() {
       //   data: user.jwt
       // })
       setFormData(initialFormData);
-      navigate("/wineListings");
+      navigate("/login");
     })
     .catch(e => {console.log(e)})
   };
