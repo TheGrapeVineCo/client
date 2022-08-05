@@ -7,6 +7,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalState } from "../utils/stateContext";
 
+const { Toggle, Brand, Collapse } = Navbar;
+const { Item, Divider } = NavDropdown;
 const Navigation = () => {
   const { store, dispatch } = useGlobalState();
   const { loggedInUser } = store;
@@ -25,11 +27,11 @@ const Navigation = () => {
   return (
     <Navbar expand="lg" className="nav-font">
       <Container fluid className="nav-bg">
-        <Navbar.Brand href="/" className="nav-bg nav-title">
+        <Brand href="/" className="nav-bg nav-title">
           The GrapeVine
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse>
+        </Brand>
+        <Toggle />
+        <Collapse>
           <Nav className="nav-bg justify-content-end flex-grow-1 pe-3">
             <Nav.Link as={Link} to="/wineListings" className="nav-bg">
               <svg
@@ -88,48 +90,44 @@ const Navigation = () => {
             >
               {loggedInUser ? (
                 <>
-                  {/* Need to include logic for only admin to have access to NewWineForm */}
-                  <NavDropdown.Item
-                    as={Link}
-                    to="/newListing"
-                    className="nav-bg"
-                  >
+                  {/* TODO: Need to include logic for only admin to have access to NewWineForm */}
+                  <Item as={Link} to="/newListing" className="nav-bg">
                     Create New Listing
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/about" className="nav-bg">
+                  </Item>
+                  <Item as={Link} to="/about" className="nav-bg">
                     About
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/myWines" className="nav-bg">
+                  </Item>
+                  <Item as={Link} to="/myWines" className="nav-bg">
                     My Wines
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
+                  </Item>
+                  <Item
                     className="nav-bg"
                     as={Link}
                     to="/wineListings"
                     onClick={logout}
                   >
                     Logout
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/contact" className="nav-bg">
+                  </Item>
+                  <Divider />
+                  <Item as={Link} to="/contact" className="nav-bg">
                     Contact Us
-                  </NavDropdown.Item>
+                  </Item>
                 </>
               ) : (
                 <>
-                  <NavDropdown.Item as={Link} to="/about" className="nav-bg">
+                  <Item as={Link} to="/about" className="nav-bg">
                     About
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/login" className="nav-bg">
+                  </Item>
+                  <Item as={Link} to="/login" className="nav-bg">
                     Login
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/signup" className="nav-bg">
+                  </Item>
+                  <Item as={Link} to="/signup" className="nav-bg">
                     Sign-up
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-bg" />
-                  <NavDropdown.Item as={Link} to="/contact" className="nav-bg">
+                  </Item>
+                  <Divider className="nav-bg" />
+                  <Item as={Link} to="/contact" className="nav-bg">
                     Contact Us
-                  </NavDropdown.Item>
+                  </Item>
                 </>
               )}
             </NavDropdown>
@@ -143,7 +141,7 @@ const Navigation = () => {
             />
             <Button className="btn-default">Search</Button>
           </Form>
-        </Navbar.Collapse>
+        </Collapse>
       </Container>
     </Navbar>
   );
