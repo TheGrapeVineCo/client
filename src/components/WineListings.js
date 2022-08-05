@@ -8,10 +8,7 @@ const WineListings = () => {
   return (
     <>
       {wineListings.map((listing) => {
-        // Iterate over all comments
-        // Pick out comments that belong to post
-        // Pass those comments as a list to <WineListing>
-
+        // Iterate over all comments pick out comments that belong to post pass those comments as a list to <WineListing>
         const comments = [];
         allComments.forEach((c) => {
           if (listing.id === c.wine_listing_id) {
