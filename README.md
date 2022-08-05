@@ -19,6 +19,7 @@ To use the production app, please visit https://thegrapevine.netlify.app/ and si
 **Requirements:**
 
 Rails 6.1.6
+
 Ruby 3.0.2
 
 After cloning the repository locally and moving into `The GrapeVine` root directory:
@@ -43,7 +44,7 @@ _Client_
 
 The application has been tested in Chrome on MacOS Monterey 12.5
 
-## Server Libraries & Dependencies
+## Server Gems & Dependencies
 
 - **Rails ~>6.1.6** - Rails is a server-side fullstack application framework. It provides an out of the box structure for both the front and back end of a web application. For the purpose of this project, it has been used to facilitate the backend of the application.
 - **Pg ~>1.1** - This is the Postgresql gem that is used for the database for the application. All data is maintained in postgres and data obtained through requests.
