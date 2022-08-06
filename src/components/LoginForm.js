@@ -29,11 +29,6 @@ function LoginForm() {
       sessionStorage.setItem("token", JSON.stringify(data.jwt));
       sessionStorage.setItem("username", JSON.stringify(data.username));
       
-      // console.log(data.email);
-      // sessionStorage.setItem("token", JSON.stringify(data.jwt))
-      // sessionStorage.setItem("email", data.user.email)
-      // // may need to change formData.email to formData.username
-
       dispatch({
         type: "setLoggedInUser",
         data: data.username,
