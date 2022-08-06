@@ -14,10 +14,3 @@ export async function getWine(id) {
   const response = await grapeVineAPI.get(`/wine_listings/${id}`);
   return response.data;
 }
-
-// export async function getMessagesByUser(username){
-//     const response = await jitterAPI.get(`/messages?username=${username}`)
-//     //console.log(response.data)
-//     return response.data
-
-// }

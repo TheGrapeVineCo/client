@@ -19,12 +19,12 @@ const Comment = ({ comment }) => {
       <p className="text-detail">{username}</p>
       <p className="text-detail">{updated}</p>
       <p>{text}</p>
-      {loggedInUser === user_id && (
+      {loggedInUser.id === user_id && (
         <Button variant="link" className="custom-btn" comment={comment}>
           Edit Message
         </Button>
       )}
-      {loggedInUser === user_id && (
+      {loggedInUser.id === user_id && (
         <Button
           variant="link"
           className="custom-btn-delete"

@@ -48,7 +48,7 @@ const WineListing = ({ listing, commentList }) => {
               {showComments ? `Hide` : `View`} Comments...
             </Button>
             {/* Only render comments link if user logged in */}
-            {loggedInUser && (
+            {loggedInUser.id && (
               <Button
                 variant="link"
                 onClick={handleShow}

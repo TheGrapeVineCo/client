@@ -12,7 +12,7 @@ export const reducer = (state, action) => {
       return {
         wineListings: [],
         allComments: [],
-        loggedInUser: "",
+        loggedInUser: {},
       };
     }
     // adds new wine listing to wineListings

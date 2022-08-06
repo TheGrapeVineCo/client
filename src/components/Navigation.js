@@ -20,7 +20,7 @@ const Navigation = () => {
     sessionStorage.clear();
     dispatch({
       type: "setLoggedInUser",
-      data: "",
+      data: {},
     });
 
     navigate("/login");
@@ -35,9 +35,9 @@ const Navigation = () => {
         <Toggle />
         <Collapse>
           <Nav className="nav-bg justify-content-end flex-grow-1 pe-3">
-            {loggedInUser ? (
+            {loggedInUser.id ? (
               <>
-                <h4>Logged in as </h4> {loggedInUser}
+                <h4>Logged in as {loggedInUser.username}</h4>
               </>
             ) : null}
 
@@ -96,7 +96,7 @@ const Navigation = () => {
               }
               id="basic-navbar-nav el-show"
             >
-              {loggedInUser ? (
+              {loggedInUser.id ? (
                 <>
                   {/* TODO: Need to include logic for only admin to have access to NewWineForm */}
                   <Item as={Link} to="/newListing" className="nav-bg">

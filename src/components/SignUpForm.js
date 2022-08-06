@@ -5,11 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../services/authServices";
-// import { useGlobalState } from "../utils/stateContext";
 
 function SignUpForm() {
-  // const { dispatch } = useGlobalState();
   const navigate = useNavigate();
+
   // creates initial form data as clean fields
   const initialFormData = {
     username: "",
@@ -24,12 +23,9 @@ function SignUpForm() {
   // upon successful sign-in, user is directed to wineListings
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("You clicked Sign Up");
-    // console.log(formData)
-
     signUp(formData)
       .then((user) => {
+        // TODO: Log user in as soon as they signup
         // sessionStorage.setItem("username", user.username)
         // sessionStorage.setItem("token", user.jwt)
 
@@ -56,7 +52,6 @@ function SignUpForm() {
       ...formData,
       [e.target.id]: e.target.value,
     });
-    // console.log(e.target.value)
   };
 
   return (

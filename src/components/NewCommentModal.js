@@ -16,7 +16,7 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
   // sets initial FormData fields to empty for newCommentForm
   const initialFormData = {
     comment: "",
-    user_id: loggedInUser,
+    user_id: loggedInUser.id,
     wine_listing_id: listing.id,
   };
 
@@ -32,25 +32,27 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Review validation so it notifies user that empty string cannot be posted
+
     if (formData.comment === "") {
-    } else {
-      // TODO: Use data from response to render new comment
-      const response = await createComment(formData);
-      console.log(response);
-      // need to get comment id from API response and pass on to dispatch
-      // may need to update data after this line to ensure the data matches up
-      setFormData({
-        ...formData,
-        // TODO: replace id, not meant to render in UI - for BE purposes
-        id: "REPLACE THIS WITH ID FROM THE BE",
-      });
-      clearFormData();
-      dispatch({
-        type: "addComment",
-        data: formData,
-      });
+      // TODO: Review validation so it notifies user that empty string cannot be posted
+      return;
     }
+
+    // TODO: Use data from response to render new comment
+    const response = await createComment(formData);
+    console.log(response);
+    // need to get comment id from API response and pass on to dispatch
+    // may need to update data after this line to ensure the data matches up
+    setFormData({
+      ...formData,
+      // TODO: replace id, not meant to render in UI - for BE purposes
+      id: "REPLACE THIS WITH ID FROM THE BE",
+    });
+    clearFormData();
+    dispatch({
+      type: "addComment",
+      data: formData,
+    });
   };
 
   // clears the form data for next entry

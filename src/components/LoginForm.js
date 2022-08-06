@@ -10,6 +10,7 @@ import { logIn } from "../services/authServices";
 function LoginForm() {
   const { dispatch } = useGlobalState();
   const navigate = useNavigate();
+
   // creates initial form data as clean fields
   const initialFormData = {
     email: "",
@@ -25,20 +26,17 @@ function LoginForm() {
 
     logIn(formData)
       .then((data) => {
-        // console.log("hello" + JSON.stringify(data) )
-        sessionStorage.setItem("token", JSON.stringify(data.jwt));
-        sessionStorage.setItem("username", JSON.stringify(data.username));
-
+        const { jwt, username, userID } = data;
+        sessionStorage.setItem("token", JSON.stringify(jwt));
+        sessionStorage.setItem("username", JSON.stringify(username));
+        sessionStorage.setItem("user_id", JSON.stringify(userID));
         dispatch({
           type: "setLoggedInUser",
-          data: data.username,
+          data: {
+            username,
+            id: userID,
+          },
         });
-
-        // dispatch({
-        //   type: "setToken",
-        //   data: data.jwt
-        // });
-
         setFormData(initialFormData);
         navigate("/wineListings");
       })
