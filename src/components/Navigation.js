@@ -17,11 +17,13 @@ const Navigation = () => {
   // performs logout function by clearing the loggedin user and redirects to home page
   const logout = (e) => {
     e.preventDefault();
+    sessionStorage.clear();
     dispatch({
       type: "setLoggedInUser",
       data: "",
     });
-    navigate("/wineListings");
+
+    navigate("/login");
   };
 
   return (
