@@ -24,7 +24,7 @@ function App() {
   const initialState = {
     wineListings: [],
     allComments: [],
-    loggedInUser: sessionStorage.getItem("username") || null
+    loggedInUser: sessionStorage.getItem("username") || null,
   };
 
   // returns an array with 2 elements: store (initial state) & dispatch to handle state

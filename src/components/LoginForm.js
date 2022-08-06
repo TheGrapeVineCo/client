@@ -24,28 +24,30 @@ function LoginForm() {
     e.preventDefault();
 
     logIn(formData)
-    .then((data) => {
-      // console.log("hello" + JSON.stringify(data) )
-      sessionStorage.setItem("token", JSON.stringify(data.jwt));
-      sessionStorage.setItem("username", JSON.stringify(data.username));
-      
-      dispatch({
-        type: "setLoggedInUser",
-        data: data.username,
-      });
+      .then((data) => {
+        // console.log("hello" + JSON.stringify(data) )
+        sessionStorage.setItem("token", JSON.stringify(data.jwt));
+        sessionStorage.setItem("username", JSON.stringify(data.username));
 
-      // dispatch({
-      //   type: "setToken",
-      //   data: data.jwt
-      // });
-      
-      setFormData(initialFormData);
-      navigate("/wineListings");
-    })
-    .then()
-    .catch(e => {console.log(e)})
+        dispatch({
+          type: "setLoggedInUser",
+          data: data.username,
+        });
+
+        // dispatch({
+        //   type: "setToken",
+        //   data: data.jwt
+        // });
+
+        setFormData(initialFormData);
+        navigate("/wineListings");
+      })
+      .then()
+      .catch((e) => {
+        console.log(e);
+      });
   };
-  
+
   const handleFormData = (e) => {
     setFormData({
       ...formData,

@@ -33,13 +33,12 @@ const Navigation = () => {
         <Toggle />
         <Collapse>
           <Nav className="nav-bg justify-content-end flex-grow-1 pe-3">
-          { loggedInUser ? (
-            <>
-              <h4>Logged in as </h4> {loggedInUser}
-            </>
-            
-          ) : null }
-              
+            {loggedInUser ? (
+              <>
+                <h4>Logged in as </h4> {loggedInUser}
+              </>
+            ) : null}
+
             <Nav.Link as={Link} to="/wineListings" className="nav-bg">
               <svg
                 xmlns="http:www.w3.org/2000/svg"
