@@ -29,25 +29,26 @@ function SignUpForm() {
     // console.log(formData)
 
     signUp(formData)
-    .then((user) => {
+      .then((user) => {
+        // sessionStorage.setItem("username", user.username)
+        // sessionStorage.setItem("token", user.jwt)
 
-      // sessionStorage.setItem("username", user.username)
-      // sessionStorage.setItem("token", user.jwt)
-      
-      // may need to change formData.email to formData.username
-      // dispatch({
-      //   type: "setLoggedInUser",
-      //   // data: formData.email,
-      //   data: user.username
-      // });
-      // dispatch({
-      //   type: "setToken",
-      //   data: user.jwt
-      // })
-      setFormData(initialFormData);
-      navigate("/login");
-    })
-    .catch(e => {console.log(e)})
+        // may need to change formData.email to formData.username
+        // dispatch({
+        //   type: "setLoggedInUser",
+        //   // data: formData.email,
+        //   data: user.username
+        // });
+        // dispatch({
+        //   type: "setToken",
+        //   data: user.jwt
+        // })
+        setFormData(initialFormData);
+        navigate("/login");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const handleFormData = (e) => {
