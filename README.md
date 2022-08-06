@@ -52,7 +52,7 @@ The application has been tested in Chrome on MacOS Monterey 12.5
 - **Bootsnap >=1.4.4** - This is a library that is automatically installed with Rails. It is used to optimise and cache expensive computations.
 - **Devise** - Provides complete MVC authentication for Rails applications. It provides a reliable, easy to implement and safe solution for authentication that is widely used across the Rails community.
 - **Devise-jwt** - This gem expands from Devise, using JWT Tokens for user authentication. It assists in allowing users to signup, login and logout safely from the application.
-- **Faker** - The Faker library provides a wide range of test data that can be used to populate a database. To reduce time spent writing out seed files, this gem has been used to populate users as well as comments.
+- **Faker** - The Faker library provides a wide range of test data that can be used to populate a database. To reduce time spent writing out seed files, this gem has been used to populate users as well as comments. For the initial reveal to our client we have kept the seeded faker data in the application, however have plans to remove this at a later point so it is more professional.
 - **Listen** - Listen is an out of the box gem that tracks and notifies whoever is subscribed of file modifications.
 - **Spring** - The Spring preloader gem allows the application to be running in the background simultaneously as tje user makes changes to files. This is another out of the box gem that comes when installing Rails.
 - **tzinfo-data** - This gem provides access to a time zone database which allows times to be converted using the rules that are in the gem.
@@ -64,8 +64,12 @@ The application has been tested in Chrome on MacOS Monterey 12.5
 - **Bootstrap ^5.1.3** - Bootstrap is a collection of HTML, CSS abd JavaScript tools that is used to build sleek and intuitive user interfaces. Elements can be easily styled with the out of the box designs that allow a responsive web app environment.
 - **Node-sass ^7.0.1** - This library binds Node.js to Sass, allowing us to compile SCSS files to CSS.
 - **React ^18.2.0** - A JavaScript library for building UI components. This is known as the view layer and maintains what users see and interact with.
-- **React-bootstrap ^2.4.0** - Built specifically for React, Bootstrap is a component-based library that provides Bootstrap components as React components. This in turn provide a more intuitive and user friendly UX.
+- **React-bootstrap ^2.4.0** - Built specifically for React, Bootstrap is a component-based library that provides Bootstrap components as React components. This in turn provide a more intuitive and friendly UX. The decision to implement React Bootstrap as opposed to other libraries was due to the fact that it is an extremely popular styling library and also felt it was important to expand on the skills in using it. While Material UI (MUI) was considered as another option, React Bootstrap seemed to be clear and provided a vast array of supportive material in addition to it being a personal goal to hone.
 - **React-dom ^18.2.0** - The ReactDOM library provides special methods that bind react to the DOM. This provides the ability to render react elements to the DOM.
 - **React-router-dom ^6.3.0** - Provides dynamic web application routing that contains DOM bindings on a SPA.
 - **React-scripts ^5.0.1** - Provided when installing `create-react-app` this dependency assists in setting up the development environment and starts a server and provides hot reloading functionality.
 - **Jest** - Although `Create-React-App` does include Jest out of the box, the app has been installed due to testing issues related to React Bootstrap. Jest is a testing framework built on Javascript that provides a testing framework for React applications.
+
+### DevDependencies
+
+- **Prettier ^2.7.1** - Implemented this gem to assist with code formatting. This dependency has assisted greatly in tidying up the code formatting to ensure it is consistent. This saves on the time spent manually updating all code to the correct formatting.
