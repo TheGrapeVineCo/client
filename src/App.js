@@ -24,7 +24,10 @@ function App() {
   const initialState = {
     wineListings: [],
     allComments: [],
-    loggedInUser: sessionStorage.getItem("username") || null
+    loggedInUser: {
+      id: JSON.parse(sessionStorage.getItem("user_id")) || undefined,
+      username: JSON.parse(sessionStorage.getItem("username")) || undefined,
+    },
   };
 
   // returns an array with 2 elements: store (initial state) & dispatch to handle state
@@ -40,10 +43,6 @@ function App() {
         });
       })
       .catch((e) => console.log(e));
-    // dispatch({
-    //   type: "setAllComments",
-    //   data: initialCommentList,
-    // });
   }, []);
 
   // loads initialWineList in componentDidMount
@@ -54,10 +53,6 @@ function App() {
         data: wineListings,
       });
     });
-    // dispatch({
-    //   type: "setWineListings",
-    //   data: initialWineListings,
-    // });
   }, []);
 
   return (

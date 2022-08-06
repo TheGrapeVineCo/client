@@ -12,7 +12,7 @@ export const reducer = (state, action) => {
       return {
         wineListings: [],
         allComments: [],
-        loggedInUser: "",
+        loggedInUser: {},
       };
     }
     // adds new wine listing to wineListings
@@ -29,16 +29,16 @@ export const reducer = (state, action) => {
     case "setLoggedInUser": {
       return {
         ...state,
-        loggedInUser: action.data
+        loggedInUser: action.data,
       };
     }
     case "setToken": {
       //updates the token value
       return {
-          ...state,
-          token: action.data
-      }
-  }
+        ...state,
+        token: action.data,
+      };
+    }
     default:
       return state;
   }
