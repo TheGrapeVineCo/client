@@ -4,11 +4,11 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 import { Link, useNavigate } from "react-router-dom";
-// import { useGlobalState } from "../utils/stateContext";
+import { useGlobalState } from "../utils/stateContext";
 import { logIn } from "../services/authServices";
 
 function LoginForm() {
-  // const { dispatch } = useGlobalState();
+  const { dispatch } = useGlobalState();
   const navigate = useNavigate();
   // creates initial form data as clean fields
   const initialFormData = {
@@ -29,17 +29,10 @@ function LoginForm() {
       sessionStorage.setItem("token", JSON.stringify(data.jwt));
       sessionStorage.setItem("username", JSON.stringify(data.username));
       
-      // console.log(data.email);
-      // sessionStorage.setItem("email", data.user.email)
-      
-      // sessionStorage.setItem("token", user.jwt)
-      // // may need to change formData.email to formData.username
-
-      // dispatch({
-      //   type: "setLoggedInUser",
-      //   // data: formData.email,
-      //   data: user.username
-      // });
+      dispatch({
+        type: "setLoggedInUser",
+        data: data.username,
+      });
 
       // dispatch({
       //   type: "setToken",

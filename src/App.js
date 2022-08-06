@@ -67,7 +67,7 @@ function App() {
         {/* provides SPA routing in FE to navigate across site */}
         <Router>
           <header className="App-header">
-            <Navigation />
+            <Navigation loggedInUser="loggedInUser" />
           </header>
           <Routes>
             <Route path="/" element={<Navigate to="wineListings" replace />} />
