@@ -4,10 +4,10 @@ import axios from "axios";
 const grapeVineAPI = axios.create({
   // fetching API from local laptop
   
-  baseURL: "http://localhost:4000",
+  // baseURL: "http://localhost:4000",
 
   // fetching API from Heroku
-  // baseURL: "https://grapevine-rails-api.herokuapp.com/",
+  baseURL: "https://grapevine-rails-api.herokuapp.com/",
 
   // Request headers maintain Auth Bearer token during login sessions for wine_listings pages.
   headers: {
