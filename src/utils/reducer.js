@@ -23,7 +23,10 @@ export const reducer = (state, action) => {
       };
     }
     case "addComment": {
-      return { ...state, allComments: [action.data, ...state.allComments] };
+      return {
+        ...state,
+        allComments: [action.data, ...state.allComments],
+      };
     }
     // updates loggedInUserValue
     case "setLoggedInUser": {
