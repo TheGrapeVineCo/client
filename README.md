@@ -8,6 +8,8 @@
 
 🖥 Server Repo: https://github.com/TheGrapeVineCo/Server
 
+(Master key = 8e60b7d0b26fd606dc509fee49215382)
+
 📖 Documentation Repo: https://github.com/TheGrapeVineCo/The-GrapeVine-Docs
 
 The GrapeVine is a site that aims to bring people together on a dedicated platform where they can share their love of Australian wine and learn a tip or two along the way. This benefits the community of wine consumers at all levels to then be able to try recommended wines by those who have shared and contributed within the community. The application has been built with React and Rails and deployed with Netlify and Heroku.
