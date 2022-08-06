@@ -17,11 +17,13 @@ const Navigation = () => {
   // performs logout function by clearing the loggedin user and redirects to home page
   const logout = (e) => {
     e.preventDefault();
+    sessionStorage.clear();
     dispatch({
       type: "setLoggedInUser",
       data: "",
     });
-    navigate("/wineListings");
+
+    navigate("/login");
   };
 
   return (
@@ -33,13 +35,12 @@ const Navigation = () => {
         <Toggle />
         <Collapse>
           <Nav className="nav-bg justify-content-end flex-grow-1 pe-3">
-          { loggedInUser ? (
-            <>
-              <h4>Logged in as </h4> {loggedInUser}
-            </>
-            
-          ) : null }
-              
+            {loggedInUser ? (
+              <>
+                <h4>Logged in as </h4> {loggedInUser}
+              </>
+            ) : null}
+
             <Nav.Link as={Link} to="/wineListings" className="nav-bg">
               <svg
                 xmlns="http:www.w3.org/2000/svg"
