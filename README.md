@@ -38,7 +38,7 @@ _Client_
 - Install npm packages with `$ npm install` or `$ yarn install`
 - From the CLI run `$ npm start` or `$ yarn start` to start the local client server
 - A browser window will open following this prompt
-- When in development mode the server will run at http://localhost:3000
+- When in development mode the server will run at http://localhost:3001 (If Server is already running on http://localhost:3000)
 
 ## Testing
 
@@ -56,6 +56,7 @@ The application has been tested in Chrome on MacOS Monterey 12.5
 - **Listen** - Listen is an out of the box gem that tracks and notifies whoever is subscribed of file modifications.
 - **Spring** - The Spring preloader gem allows the application to be running in the background simultaneously as tje user makes changes to files. This is another out of the box gem that comes when installing Rails.
 - **tzinfo-data** - This gem provides access to a time zone database which allows times to be converted using the rules that are in the gem.
+- **REST Client** - This is a Visual Code extension used to help with manual testing GET, POST, PUT/PATCH, DELETE requests.
 
 ## Client Libraries & Dependencies
 
