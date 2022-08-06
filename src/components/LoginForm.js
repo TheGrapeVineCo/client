@@ -32,7 +32,6 @@ function LoginForm() {
       dispatch({
         type: "setLoggedInUser",
         data: data.username,
-      //   data: user.username
       });
 
       // dispatch({
