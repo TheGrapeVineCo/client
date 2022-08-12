@@ -35,8 +35,8 @@ export const reducer = (state, action) => {
         loggedInUser: action.data,
       };
     }
+    //updates the token value
     case "setToken": {
-      //updates the token value
       return {
         ...state,
         token: action.data,
