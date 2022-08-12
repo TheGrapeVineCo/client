@@ -39,20 +39,23 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
     }
 
     // TODO: Use data from response to render new comment
-    const response = await createComment(formData);
-    console.log(response);
+    console.log(formData);
+    // const response = await createComment(formData);
+    createComment(formData).then((comment) => {
+      dispatch({
+        type: "addComment",
+        data: comment,
+      });
+    });
+    // console.log(response);
     // need to get comment id from API response and pass on to dispatch
     // may need to update data after this line to ensure the data matches up
-    setFormData({
-      ...formData,
-      // TODO: replace id, not meant to render in UI - for BE purposes
-      id: "REPLACE THIS WITH ID FROM THE BE",
-    });
+    // setFormData({
+    //   ...formData,
+    //   // TODO: replace id, not meant to render in UI - for BE purposes
+    //   id: "REPLACE THIS WITH ID FROM THE BE",
+    // });
     clearFormData();
-    dispatch({
-      type: "addComment",
-      data: formData,
-    });
   };
 
   // clears the form data for next entry
