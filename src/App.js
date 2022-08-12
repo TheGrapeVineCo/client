@@ -25,8 +25,9 @@ function App() {
     wineListings: [],
     allComments: [],
     loggedInUser: {
-      id: JSON.parse(sessionStorage.getItem("user_id")) || undefined,
-      username: JSON.parse(sessionStorage.getItem("username")) || undefined,
+      id: JSON.parse(sessionStorage.getItem("user_id")) || null,
+      username: JSON.parse(sessionStorage.getItem("username")) || null,
+      token: JSON.parse(sessionStorage.getItem("token")) || null,
     },
   };
 
