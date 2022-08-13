@@ -1,15 +1,22 @@
 import React from "react";
 import { useGlobalState } from "../utils/stateContext";
 import Button from "react-bootstrap/Button";
+import { removeComment } from "../services/commentServices";
 
 // Renders one comment from 'Comments' component
 const Comment = ({ comment }) => {
-  const { store } = useGlobalState();
+  const { store, dispatch } = useGlobalState();
   const { loggedInUser } = store;
 
   const deleteComment = (e) => {
     e.preventDefault();
-    // TODO: implement delete comment
+
+    removeComment(comment.id).then((data) => {
+      dispatch({
+        type: "deleteComment",
+        data: comment.id,
+      });
+    });
   };
 
   const { username, updated, comment: text, user_id } = comment;
