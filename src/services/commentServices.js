@@ -21,6 +21,6 @@ export async function getComment(id) {
 }
 
 export async function removeComment(id) {
-  const response = await grapeVineAPI.get(`/comments/${id}`);
+  const response = await grapeVineAPI.delete(`/comments/${id}`);
   return response.data;
 }
