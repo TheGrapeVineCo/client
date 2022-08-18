@@ -33,6 +33,23 @@ export const reducer = (state, action) => {
       };
     }
 
+    case "updateComment": {
+      // identifies specific comment by ID
+      const comment = state.allComments.find(
+        (comment) => comment.id === action.data.id
+      );
+      // contains all comments except one being updated
+      const remainingComments = state.allComments.filter(
+        (comment) => comment.id !== action.data.id
+      );
+      const updatedComment = Object.assign(comment, action.data);
+      return {
+        ...state,
+        // commentID: comment.id,
+        allComments: [updatedComment, ...remainingComments],
+      };
+    }
+
     // removes a comment by getting the comment id
     case "deleteComment": {
       let updatedCommentList = state.allComments.filter(

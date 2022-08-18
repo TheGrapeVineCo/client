@@ -3,13 +3,13 @@ import { useGlobalState } from "../utils/stateContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
-import { createComment } from "../services/commentServices";
+import { createComment, editComment } from "../services/commentServices";
 
 // destructures react-bootstrap component to make code DRY
 const { Header, Title, Body, Footer } = Modal;
 const { Group, Control } = Form;
 
-const NewCommentModal = ({ show, handleClose, listing }) => {
+const NewCommentModal = ({ show, handleClose, listing, comment }) => {
   const { store, dispatch } = useGlobalState();
   const { loggedInUser } = store;
 
@@ -37,16 +37,30 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
       // TODO: Review validation so it notifies user that empty string cannot be posted
       return;
     }
-
-    // TODO: Use data from response to render new comment
+    console.log(comment);
     console.log(formData);
-    // const response = await createComment(formData);
-    createComment(formData).then((comment) => {
-      dispatch({
-        type: "addComment",
-        data: comment,
+    if (comment.id) {
+      editComment(formData).then(() => {
+        dispatch({
+          type: "updateComment",
+          data: {
+            comment: { comment: formData.comment, commentID: comment.id },
+          },
+        });
       });
-    });
+    }
+    // TODO: Use data from response to render new comment
+    // console.log(formData);
+    // const response = await createComment(formData);
+    // createComment(formData).then((comment) => {
+    // console logging the new comment - saving to DB
+    // console.log(comment);
+    // dispatch({
+    //   type: "addComment",
+    //   data: comment,
+    // }).catch((error) => console.log(error));
+    // });
+
     // console.log(response);
     // need to get comment id from API response and pass on to dispatch
     // may need to update data after this line to ensure the data matches up
@@ -97,7 +111,8 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
           <Button
             variant="secondary"
             type="submit"
-            value="post"
+            value={comment ? "Update" : "Post"}
+            // value="Post"
             onClick={handleClose}
             className="btn-default"
           >
