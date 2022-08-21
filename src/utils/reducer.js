@@ -27,6 +27,7 @@ export const reducer = (state, action) => {
     }
 
     case "addComment": {
+      console.log(action.data);
       return {
         ...state,
         allComments: [action.data, ...state.allComments],
@@ -34,18 +35,19 @@ export const reducer = (state, action) => {
     }
 
     case "updateComment": {
+      console.log(action.data.comment.commentID);
       // identifies specific comment by ID
       const comment = state.allComments.find(
-        (comment) => comment.id === action.data.id
+        (comment) => comment.id === action.data.comment.commentID
       );
+      console.log(comment);
       // contains all comments except one being updated
       const remainingComments = state.allComments.filter(
-        (comment) => comment.id !== action.data.id
+        (comment) => comment.id !== action.data.comment.commentID
       );
-      const updatedComment = Object.assign(comment, action.data);
+      const updatedComment = Object.assign(comment, action.data.comment);
       return {
         ...state,
-        // commentID: comment.id,
         allComments: [updatedComment, ...remainingComments],
       };
     }
