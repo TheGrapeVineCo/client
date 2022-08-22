@@ -102,7 +102,7 @@ const NewCommentModal = ({ show, handleClose, listing, comment }) => {
             onClick={handleClose}
             className="btn-default"
           >
-            Post
+            {comment ? "Update" : "Post"}
           </Button>
         </Footer>
       </Form>
