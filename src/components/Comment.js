@@ -33,23 +33,8 @@ const Comment = ({ comment, listing }) => {
 
   const updateComment = (e) => {
     e.preventDefault();
-
-    // console.log("first step achieved");
-    // console.log(comment);
-    // console.log(listing);
-    // Opens modal for user to make new comment
     setShowCommentModal(true);
-    // console.log(comment.id);
-    // setShowCommentModal(false);
-
-    // editComment({ id: comment.id, ...comment }).then(() => {
-    //   console.log(comment.id, comment);
-    //   dispatch({
-    //     type: "updateComment",
-    //     data: { id: comment.id, ...comment },
-    //   });
-    //   // history.push(`/comments/${comment.id}`);
-    // });
+    console.log(comment);
   };
 
   const { username, updated, comment: text, user_id } = comment;

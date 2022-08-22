@@ -98,7 +98,6 @@ const NewCommentModal = ({ show, handleClose, listing, comment }) => {
             variant="secondary"
             type="submit"
             value={comment ? "Update" : "Post"}
-            // value="Post"
             onClick={handleClose}
             className="btn-default"
           >
