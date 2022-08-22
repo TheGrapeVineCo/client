@@ -21,15 +21,12 @@ export async function createComment(data) {
 //   return response.data;
 // }
 
-// not yet tested -> tbd
 export async function editComment(data) {
-  console.log(data);
-  const response = await grapeVineAPI.patch(`/comments/${data.id}`, {
-    comment: data.comment,
-    wine_listing_id: data.wine_listing_id,
-    user_id: data.user_id,
-  });
-  console.log(response);
+  const { user_id, wine_listing_id, id } = data;
+  const payload = {
+    comment: { user_id, wine_listing_id, user_comment: data.comment },
+  };
+  const response = await grapeVineAPI.patch(`/comments/${id}`, payload);
   return response.data;
 }
 
