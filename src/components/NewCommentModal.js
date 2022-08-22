@@ -32,43 +32,29 @@ const NewCommentModal = ({ show, handleClose, listing, comment }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (formData.comment === "") {
-      // TODO: Review validation so it notifies user that empty string cannot be posted
+      //   // TODO: Review validation so it notifies user that empty string cannot be posted
       return;
     }
-    console.log(comment);
-    console.log(formData);
-    if (comment.id) {
-      editComment(formData).then(() => {
-        dispatch({
-          type: "updateComment",
-          data: {
-            comment: { comment: formData.comment, commentID: comment.id },
-          },
-        });
-      });
+    if (comment && comment.id) {
+      const updateComment = { ...formData, id: comment.id };
+      editComment(updateComment)
+        .then(() => {
+          dispatch({
+            type: "updateComment",
+            data: {
+              comment: { comment: formData.comment, commentID: comment.id },
+            },
+          });
+        })
+        .catch((error) => console.log(error));
+    } else {
+      createComment(formData)
+        .then((comment) => {
+          dispatch({ type: "addComment", data: comment });
+        })
+        .catch((error) => console.log(error));
     }
-    // TODO: Use data from response to render new comment
-    // console.log(formData);
-    // const response = await createComment(formData);
-    // createComment(formData).then((comment) => {
-    // console logging the new comment - saving to DB
-    // console.log(comment);
-    // dispatch({
-    //   type: "addComment",
-    //   data: comment,
-    // }).catch((error) => console.log(error));
-    // });
-
-    // console.log(response);
-    // need to get comment id from API response and pass on to dispatch
-    // may need to update data after this line to ensure the data matches up
-    // setFormData({
-    //   ...formData,
-    //   // TODO: replace id, not meant to render in UI - for BE purposes
-    //   id: "REPLACE THIS WITH ID FROM THE BE",
-    // });
     clearFormData();
   };
 
