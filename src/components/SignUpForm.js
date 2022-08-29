@@ -5,8 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../services/authServices";
+// import { useGlobalState } from "../utils/stateContext";
 
 function SignUpForm() {
+  // const { dispatch } = useGlobalState();
   const navigate = useNavigate();
 
   // creates initial form data as clean fields
@@ -26,9 +28,15 @@ function SignUpForm() {
     signUp(formData)
       .then((user) => {
         // TODO: Log user in as soon as they signup
-        // sessionStorage.setItem("username", user.username)
-        // sessionStorage.setItem("token", user.jwt)
 
+        // Currently the code below does nothing
+        const { jwt, username, userID } = user;
+        sessionStorage.setItem("token", JSON.stringify(jwt));
+        sessionStorage.setItem("username", JSON.stringify(username));
+        sessionStorage.setItem("user_id", JSON.stringify(userID));
+        // console.log(jwt); --> undefined
+        // console.log(username); --> undefined
+        // console.log(userID); --> undefined
         // may need to change formData.email to formData.username
         // dispatch({
         //   type: "setLoggedInUser",

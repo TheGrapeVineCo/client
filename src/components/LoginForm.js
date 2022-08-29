@@ -37,10 +37,13 @@ function LoginForm() {
             id: userID,
           },
         });
+        dispatch({
+          type: "setToken",
+          data: jwt,
+        });
         setFormData(initialFormData);
         navigate("/wineListings");
       })
-      .then()
       .catch((e) => {
         console.log(e);
       });

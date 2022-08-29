@@ -57,7 +57,9 @@ const WineListing = ({ listing, commentList }) => {
                 Add Comment
               </Button>
             )}
-            {showComments && <Comments commentList={commentList} />}
+            {showComments && (
+              <Comments commentList={commentList} listing={listing} />
+            )}
           </>
         )}
 

@@ -15,12 +15,22 @@ export async function createComment(data) {
   return response.data;
 }
 
-export async function getComment(id) {
-  const response = await grapeVineAPI.get(`/comments/${id}`);
+// Not yet implemented - possibly not necessary
+// export async function getComment(id) {
+//   const response = await grapeVineAPI.get(`/comments/${id}`);
+//   return response.data;
+// }
+
+export async function editComment(data) {
+  const { user_id, wine_listing_id, id } = data;
+  const payload = {
+    comment: { user_id, wine_listing_id, user_comment: data.comment },
+  };
+  const response = await grapeVineAPI.patch(`/comments/${id}`, payload);
   return response.data;
 }
 
 export async function removeComment(id) {
-  const response = await grapeVineAPI.get(`/comments/${id}`);
+  const response = await grapeVineAPI.delete(`/comments/${id}`);
   return response.data;
 }

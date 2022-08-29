@@ -5,9 +5,11 @@ export const reducer = (state, action) => {
     case "setWineListings": {
       return { ...state, wineListings: action.data };
     }
+
     case "setAllComments": {
       return { ...state, allComments: action.data };
     }
+
     case "cleanState": {
       return {
         wineListings: [],
@@ -15,6 +17,7 @@ export const reducer = (state, action) => {
         loggedInUser: {},
       };
     }
+
     // adds new wine listing to wineListings
     case "addNewWineListing": {
       return {
@@ -22,12 +25,41 @@ export const reducer = (state, action) => {
         wineListings: [action.data, ...state.wineListings],
       };
     }
+
     case "addComment": {
       return {
         ...state,
         allComments: [action.data, ...state.allComments],
       };
     }
+
+    case "updateComment": {
+      // identifies specific comment by ID
+      const comment = state.allComments.find(
+        (comment) => comment.id === action.data.comment.commentID
+      );
+      // contains all comments except one being updated
+      const remainingComments = state.allComments.filter(
+        (comment) => comment.id !== action.data.comment.commentID
+      );
+      const updatedComment = Object.assign(comment, action.data.comment);
+      return {
+        ...state,
+        allComments: [updatedComment, ...remainingComments],
+      };
+    }
+
+    // removes a comment by getting the comment id
+    case "deleteComment": {
+      let updatedCommentList = state.allComments.filter(
+        (comment) => comment.id !== action.data
+      );
+      return {
+        ...state,
+        allComments: updatedCommentList,
+      };
+    }
+
     // updates loggedInUserValue
     case "setLoggedInUser": {
       return {
@@ -35,8 +67,8 @@ export const reducer = (state, action) => {
         loggedInUser: action.data,
       };
     }
+    //updates the token value
     case "setToken": {
-      //updates the token value
       return {
         ...state,
         token: action.data,

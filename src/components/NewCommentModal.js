@@ -3,13 +3,13 @@ import { useGlobalState } from "../utils/stateContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
-import { createComment } from "../services/commentServices";
+import { createComment, editComment } from "../services/commentServices";
 
 // destructures react-bootstrap component to make code DRY
 const { Header, Title, Body, Footer } = Modal;
 const { Group, Control } = Form;
 
-const NewCommentModal = ({ show, handleClose, listing }) => {
+const NewCommentModal = ({ show, handleClose, listing, comment }) => {
   const { store, dispatch } = useGlobalState();
   const { loggedInUser } = store;
 
@@ -32,27 +32,30 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (formData.comment === "") {
-      // TODO: Review validation so it notifies user that empty string cannot be posted
+      //   // TODO: Review validation so it notifies user that empty string cannot be posted
       return;
     }
-
-    // TODO: Use data from response to render new comment
-    const response = await createComment(formData);
-    console.log(response);
-    // need to get comment id from API response and pass on to dispatch
-    // may need to update data after this line to ensure the data matches up
-    setFormData({
-      ...formData,
-      // TODO: replace id, not meant to render in UI - for BE purposes
-      id: "REPLACE THIS WITH ID FROM THE BE",
-    });
+    if (comment && comment.id) {
+      const updateComment = { ...formData, id: comment.id };
+      editComment(updateComment)
+        .then(() => {
+          dispatch({
+            type: "updateComment",
+            data: {
+              comment: { comment: formData.comment, commentID: comment.id },
+            },
+          });
+        })
+        .catch((error) => console.log(error));
+    } else {
+      createComment(formData)
+        .then((comment) => {
+          dispatch({ type: "addComment", data: comment });
+        })
+        .catch((error) => console.log(error));
+    }
     clearFormData();
-    dispatch({
-      type: "addComment",
-      data: formData,
-    });
   };
 
   // clears the form data for next entry
@@ -94,11 +97,11 @@ const NewCommentModal = ({ show, handleClose, listing }) => {
           <Button
             variant="secondary"
             type="submit"
-            value="post"
+            value={comment ? "Update" : "Post"}
             onClick={handleClose}
             className="btn-default"
           >
-            Post
+            {comment ? "Update" : "Post"}
           </Button>
         </Footer>
       </Form>

@@ -22,6 +22,10 @@ const Navigation = () => {
       type: "setLoggedInUser",
       data: {},
     });
+    dispatch({
+      type: "setToken",
+      data: {},
+    });
 
     navigate("/login");
   };
