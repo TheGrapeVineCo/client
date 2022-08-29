@@ -18,6 +18,7 @@ import { StateContext } from "./utils/stateContext";
 import SignUpForm from "./components/SignUpForm";
 import { getWineListings } from "./services/wineServices";
 import { getComments } from "./services/commentServices";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   // defines initial state
@@ -72,6 +73,7 @@ function App() {
             <Route path="login" element={<LoginForm />} />
             <Route path="signup" element={<SignUpForm />} />
             <Route path="ratings" element={<Ratings />} />
+            <Route path="contact" element={<ContactUs />} />
             {/* Need to include logic for only admin to have access to NewWineForm */}
             <Route path="newListing" element={<NewWineForm />} />
             <Route path="*" element={<NotFound />} />
