@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../services/authServices";
 // import { useGlobalState } from "../utils/stateContext";
+import Wine from "../assets/alternate-wine.jpg";
 
 function SignUpForm() {
   // const { dispatch } = useGlobalState();
@@ -67,7 +68,8 @@ function SignUpForm() {
       <h2 className="page-title">Sign Up With The GrapeVine 🍇</h2>
       <Card className="signup-specs">
         <Image
-          src="assets/alternate-wine.jpg"
+          src={Wine}
+          alt="Hero image"
           height={480}
           rounded
           className="d-none d-sm-block"
