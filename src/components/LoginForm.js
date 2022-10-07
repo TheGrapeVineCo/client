@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalState } from "../utils/stateContext";
 import { logIn } from "../services/authServices";
+import LoginImg from "../assets/login.jpg";
 
 function LoginForm() {
   const { dispatch } = useGlobalState();
@@ -61,7 +62,8 @@ function LoginForm() {
       <h2 className="page-title">Login</h2>
       <Card className="signup-specs">
         <Image
-          src="assets/login.jpg"
+          src={LoginImg}
+          alt="Hero Image"
           height={480}
           rounded
           className="d-none d-sm-block"
